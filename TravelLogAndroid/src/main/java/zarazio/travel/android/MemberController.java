@@ -75,7 +75,6 @@ public class MemberController {
 	@ResponseBody
 	public String passFind(Member member) throws Exception {
 
-		System.out.println("ㅇㅇ");
 		System.out.println(member.getUser_id());
 		Member mem = service.passFind(member);
 		String result = "FAILED";
