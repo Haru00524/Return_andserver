@@ -12,4 +12,5 @@ public interface boardService {
 	public void insertHash(hashTagDTO hash)throws Exception;
 	public void insertFile(attachedFileDTO file)throws Exception;
 	public List<boardDTO> boardList()throws Exception;
+	public List<attachedFileDTO> selPicture(int board_code)throws Exception;
 }

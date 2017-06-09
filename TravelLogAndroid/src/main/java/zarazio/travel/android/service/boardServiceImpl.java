@@ -52,4 +52,10 @@ public class boardServiceImpl implements boardService {
 		return dao.boardList();
 	}
 
+	@Override
+	public List<attachedFileDTO> selPicture(int board_code) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.selPicture(board_code);
+	}
+
 }

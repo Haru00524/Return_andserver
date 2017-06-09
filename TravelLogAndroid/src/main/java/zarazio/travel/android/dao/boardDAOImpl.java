@@ -55,4 +55,10 @@ public static final String namespace = "travel.android.boardMapper" ;
 		return sqlSession.selectList(namespace+".share_Log_List");
 	}
 
+	@Override
+	public List<attachedFileDTO> selPicture(int board_code) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+".addFile", board_code);
+	}
+
 }

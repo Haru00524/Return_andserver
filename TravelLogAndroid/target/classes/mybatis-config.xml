@@ -7,5 +7,7 @@
 	<typeAliases>
 		<typeAlias alias="ARDataInfo" type="zarazio.travel.android.bean.ARDataInfo" /> 
 		<typeAlias alias="Member" type="zarazio.travel.android.bean.Member" /> 
+		<typeAlias alias="boardDTO" type="zarazio.travel.android.bean.boardDTO" /> 
+		<typeAlias alias="addachedFileDTO" type="zarazio.travel.android.bean.attachedFileDTO" /> 
 	</typeAliases>
 </configuration>
