@@ -23,8 +23,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartRequest;
 
-import zarazio.travel.android.bean.PictureFileDTO;
 
 @Controller
 public class TravelLogController {
@@ -79,61 +79,6 @@ public class TravelLogController {
 		System.out.println("success");
 		return "success";
 	}
-	@RequestMapping("dd")
-	public String databaseInsert(PictureFileDTO dto) {
-		System.out.println("왔음");
-		String returnVal = "false";
-		try {
-			MultipartFile pictureFile = dto.getPictureFile();
-
-			String fileName = dto.getFileName();
-
-			if (pictureFile != null) {
-				String originalFileName = pictureFile.getOriginalFilename();
-				String contentType = pictureFile.getContentType();
-				// if (contentType.endsWith("image/jpeg")) { //안드로이드에선 사친첩에서만
-				// 보내기때문에 검사 안함
-				dto.setFileName(originalFileName);
-				try {
-					Date now = new Date();
-					String directory = uploadPath; // 미리 세팅해둔
-																	// 이미지 저장 경로
-					String dateString = new SimpleDateFormat("yyyy-MM-dd").format(now);
-					String uniqueFileName = UUID.randomUUID().toString();
-					File dir = new File(directory + "/" + dateString);
-					if (!dir.exists() || !dir.isDirectory()) {
-						dir.mkdir();
-					}
-					
-					// 1. FileOutputStream 사용
-
-					// byte[] fileData = file.getBytes();
-
-					// FileOutputStream output = new
-					// FileOutputStream("C:/images/" +fileName);
-
-					// output.write(fileData);
-
-					// 2. File 사용
-
-					File file = new File(directory + "/" + dateString + "/" + uniqueFileName + ".jpg");
-					pictureFile.transferTo(file);
-					dto.setFilePath(dateString + "/" + uniqueFileName + ".jpg");
-
-					// 데이터 베이스 처리를 현재 위치에서 처리
-
-					returnVal = "success";
-				} catch (IOException e) {
-					e.printStackTrace();
-				} // try - catch
-			}
-			// } // if
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return returnVal;
-
-	}
+	
 
 }
