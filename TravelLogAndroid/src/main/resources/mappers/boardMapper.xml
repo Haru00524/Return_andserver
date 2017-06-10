@@ -23,6 +23,25 @@
   		select *
   		from board
   		where share_Type = 1
+  		ORDER BY board_Date DESC;
+  	</select>
+  	<select id="share_Log_hash_List" resultType="boardDTO">
+  		SELECT a.*
+  		FROM board a,hash_tag b
+  		WHERE a.board_Code = b.board_Code and b.hash_tag_Content LIKE CONCAT('%',#{hash_tag},'%') and a.share_Type = 1
+  		ORDER BY board_Date DESC; 
+  	</select>
+  		<select id="share_Log_like_List" resultType="boardDTO">
+  		select *
+  		from board
+  		where share_Type = 1
+  		ORDER BY like DESC; 
+  	</select>
+  		<select id="share_Log_Like_hash_List" resultType="boardDTO">
+  		SELECT a.*
+  		FROM board a,hash_tag b
+  		WHERE a.board_Code = b.board_Code and b.hash_tag_Content LIKE CONCAT('%',#{hash_tag},'%') and a.share_Type =1
+  		ORDER BY like DESC; 
   	</select>
   	<select id="addFile" resultType="addachedFileDTO">
   		select *

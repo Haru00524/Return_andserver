@@ -58,4 +58,10 @@ public class boardServiceImpl implements boardService {
 		return dao.selPicture(board_code);
 	}
 
+	@Override
+	public List<boardDTO> boardList(String Hash) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.boardHashList(Hash);
+	}
+
 }

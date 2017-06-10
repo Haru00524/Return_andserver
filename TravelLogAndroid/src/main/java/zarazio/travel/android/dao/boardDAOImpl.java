@@ -61,4 +61,13 @@ public static final String namespace = "travel.android.boardMapper" ;
 		return sqlSession.selectList(namespace+".addFile", board_code);
 	}
 
+	@Override
+	public List<boardDTO> boardHashList(String hash_tag) throws Exception {
+		// TODO Auto-generated method stub
+		System.out.println(hash_tag);
+		return sqlSession.selectList(namespace+".share_Log_hash_List", hash_tag);
+	}
+
+	
+
 }

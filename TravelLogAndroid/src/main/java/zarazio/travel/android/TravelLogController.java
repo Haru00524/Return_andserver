@@ -31,6 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 
+import zarazio.travel.android.bean.ARFilterDTo;
 import zarazio.travel.android.bean.attachedFileDTO;
 import zarazio.travel.android.bean.boardDTO;
 import zarazio.travel.android.bean.hashTagDTO;
@@ -47,15 +48,27 @@ public class TravelLogController {
 	private boardService service;
 
 	@RequestMapping(value="/boardList")
-	public ResponseEntity<String> ARDataList() throws Exception {
+	public ResponseEntity<String> ARDataList(ARFilterDTo arFilter) throws Exception {
 		HttpHeaders resHeaders = new HttpHeaders();
 		resHeaders.add("Content-Type", "application/json;charset=UTF-8");
-
-		List<boardDTO> List = service.boardList();
-
+		List<boardDTO> List = null;
+		
+		
+		if(arFilter.getHashTag().equals("없음") && arFilter.getOrder_DB().equals("1")){
+			System.out.println("없음");
+			List = service.boardList();
+		}else if(!(arFilter.getHashTag().equals("없음")) && arFilter.getOrder_DB().equals("1")){
+			System.out.println("해시태그");
+			List = service.boardList(arFilter.getHashTag());
+		}else if(arFilter.getHashTag().equals("없음") && arFilter.getOrder_DB().equals("2")){
+			
+		}else if(!(arFilter.getHashTag().equals("없음")) && arFilter.getOrder_DB().equals("2")){
+			
+		}
 		Gson gson = new Gson();
 		String data =  gson.toJson(List);
 		
+		System.out.println(data);
 		return new ResponseEntity<String>(data,resHeaders,HttpStatus.CREATED);
 		
 	}
@@ -65,11 +78,15 @@ public class TravelLogController {
 		HttpHeaders resHeaders = new HttpHeaders();
 		resHeaders.add("Content-Type", "application/json;charset=UTF-8");
 
+		System.out.println(board_code+"출력");
 		List<attachedFileDTO> List = service.selPicture(board_code);
 
 		Gson gson = new Gson();
 		String data =  gson.toJson(List);
 		
+		if(data.equals("[]")){
+			data="failed";
+		}
 		System.out.println(data);
 		return new ResponseEntity<String>(data,resHeaders,HttpStatus.CREATED);
 		
