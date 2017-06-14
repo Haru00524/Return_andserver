@@ -59,5 +59,41 @@ public class MemberDAOImpl implements MemberDAO{
 		sqlSession.update(namespace+".lostpass", member);
 	}
 
+
+	@Override
+	public void user_update(Member member) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace+".profile_update", member);
+	}
+
+
+	@Override
+	public void passUpdate(Member member) throws Exception {
+		// TODO Auto-generated method stub
+	
+		sqlSession.update(namespace+".lostpass", member);
+	}
+
+
+	@Override
+	public void user_updateEamil(Member member) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace+".profile_update_email", member);
+	}
+
+
+	@Override
+	public void user_updatePhone(Member member) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace+".profile_update_phone", member);
+	}
+
+
+	@Override
+	public void user_updateBasic(Member member) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace+".profile_update_basic", member);
+	}
+
 	
 }

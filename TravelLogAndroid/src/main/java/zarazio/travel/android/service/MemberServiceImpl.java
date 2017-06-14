@@ -50,4 +50,24 @@ public class MemberServiceImpl implements MemberService{
 		dao.lostpass(member);
 	}
 
+	@Override
+	public void user_update(Member member) throws Exception {
+		// TODO Auto-generated method stub
+		if(member.getUser_email().equals("") && member.getUser_phone().equals("")){
+			dao.user_updateBasic(member);
+		}else if(!member.getUser_phone().equals("")){
+			dao.user_updatePhone(member);
+		}else if(!member.getUser_email().equals("")){
+			dao.user_updateEamil(member);
+		}else{
+			dao.user_update(member);
+		}
+	}
+
+	@Override
+	public void passUpdate(Member member) throws Exception {
+		// TODO Auto-generated method stub
+		dao.passUpdate(member);
+	}
+
 }

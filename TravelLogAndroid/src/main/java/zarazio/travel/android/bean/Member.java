@@ -10,6 +10,7 @@ public class Member {
 	private String user_phone ;
 	private String user_email ;
 	private Date user_date ;
+	private String this_id;
 	
 	public String getUser_id() {
 		return user_id;
@@ -52,6 +53,12 @@ public class Member {
 	}
 	public void setUser_date(Date user_date) {
 		this.user_date = user_date;
+	}
+	public String getThis_id() {
+		return this_id;
+	}
+	public void setThis_id(String this_id) {
+		this.this_id = this_id;
 	}
 	
 	

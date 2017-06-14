@@ -46,6 +46,36 @@ public class MemberController {
 		return count;
 	}
 
+	@RequestMapping("change_profile")
+	@ResponseBody
+	public String changeProfile(HttpServletRequest request ,Member member) throws Exception {
+		
+		String result="Failed";
+		
+		String count = service.idCheck(member) + "";
+		if(count.equals("1")){
+			result = "idcheck";
+		}else if(!count.equals("1")){
+			service.user_update(member);
+			result="success";
+		}else{
+			result = "Failed";
+		}
+		
+		return result;
+	}
+	
+	@RequestMapping("change_pass")
+	@ResponseBody
+	public String changePassWord(HttpServletRequest request ,Member member) throws Exception {
+		
+		String result="Failed";
+		service.passUpdate(member);
+		result="success";
+		
+		return result;
+	}
+	
 	@RequestMapping("login")
 	@ResponseBody
 	public String androidLogin(HttpServletRequest request, Member member) throws Exception {

@@ -27,4 +27,20 @@
   		update user_info set user_pass = #{user_pass}
 		where user_id = #{user_id}
   	</update>
+  	<update id="profile_update_full">
+  		update user_info set user_id = #{user_id}, user_email = #{user_email}. user_phone = #{user_phone}, user_gender = #{user_gender}
+		where user_id = #{this_id}
+  	</update>
+  	<update id="profile_update_email">
+  		update user_info set user_id = #{user_id}, user_email = #{user_email}. user_gender = #{user_gender}
+		where user_id = #{this_id}
+  	</update>
+  	<update id="profile_update_phone">
+  		update user_info set user_id = #{user_id}, user_phone = #{user_phone}, user_gender = #{user_gender}
+		where user_id = #{this_id}
+  	</update>
+  	<update id="profile_update_basic">
+  		update user_info set user_id = #{user_id}, user_gender = #{user_gender}
+		where user_id = #{this_id}
+  	</update>
 </mapper>

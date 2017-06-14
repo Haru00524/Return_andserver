@@ -12,6 +12,6 @@ public interface boardDAO {
 	public void insertHash(hashTagDTO hash)throws Exception;
 	public void insertFile(attachedFileDTO files)throws Exception;
 	public List<boardDTO> boardList()throws Exception;
-	public List<boardDTO> boardHashList(String Hash)throws Exception;
+	public List<boardDTO> boardHashList(String hash_tag)throws Exception;
 	public List<attachedFileDTO> selPicture(int board_code)throws Exception;
 }

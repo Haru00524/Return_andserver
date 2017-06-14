@@ -25,6 +25,22 @@
   		where share_Type = 1
   		ORDER BY board_Date DESC;
   	</select>
+  	<select id="share_Log_all_List" resultType="boardLIstDTO">
+  		select a.*, b.file_Type, b.file_Content
+  		from board a
+        LEFT OUTER JOIN attached_file b
+        ON a.board_Code = b.board_Code
+  		where  a.share_Type = 1 
+  		ORDER BY board_Date DESC;
+  	</select>
+  	<select id="share_Log_search_List" resultType="boardLIstDTO">
+  		select a.*, b.file_Type, b.file_Content
+  		from hash_tag c, board a
+        LEFT OUTER JOIN attached_file b
+        ON a.board_Code = b.board_Code
+  		where  a.share_Type = 1 and c.board_Code = a.board_Code and c.hash_tag_Content LIKE CONCAT('%',#{hash_tag},'%')
+  		ORDER BY board_Date DESC;
+  	</select>
   	<select id="share_Log_hash_List" resultType="boardDTO">
   		SELECT a.*
   		FROM board a,hash_tag b

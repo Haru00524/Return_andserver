@@ -55,10 +55,8 @@ public class TravelLogController {
 		
 		
 		if(arFilter.getHashTag().equals("없음") && arFilter.getOrder_DB().equals("1")){
-			System.out.println("없음");
 			List = service.boardList();
 		}else if(!(arFilter.getHashTag().equals("없음")) && arFilter.getOrder_DB().equals("1")){
-			System.out.println("해시태그");
 			List = service.boardList(arFilter.getHashTag());
 		}else if(arFilter.getHashTag().equals("없음") && arFilter.getOrder_DB().equals("2")){
 			
@@ -67,8 +65,7 @@ public class TravelLogController {
 		}
 		Gson gson = new Gson();
 		String data =  gson.toJson(List);
-		
-		System.out.println(data);
+
 		return new ResponseEntity<String>(data,resHeaders,HttpStatus.CREATED);
 		
 	}
