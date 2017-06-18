@@ -31,6 +31,12 @@ public class LisetViewServiceImpl implements ListViewService {
 		// TODO Auto-generated method stub
 		return dao.serachListHashList(hash_tag);
 	}
+
+	@Override
+	public List<boardLIstDTO> mainList(String user_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.mainList(user_id);
+	}
 	
 	
 

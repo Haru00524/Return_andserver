@@ -21,9 +21,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 
 import zarazio.travel.android.bean.ARDataInfo;
+import zarazio.travel.android.bean.boardDTO;
 import zarazio.travel.android.bean.boardLIstDTO;
 import zarazio.travel.android.service.ARDataService;
 import zarazio.travel.android.service.ListViewService;
+import zarazio.travel.android.service.StepService;
 
 /**
  * Handles requests for the application home page.
@@ -33,6 +35,23 @@ public class MainViewController {
 	
 	@Inject
 	private ListViewService service ;
+	@Inject
+	private StepService stepService;
+	
+	@RequestMapping(value="/main_View_DB")
+	public ResponseEntity<String> mainViewDB(String user_id) throws Exception {
+		HttpHeaders resHeaders = new HttpHeaders();
+		resHeaders.add("Content-Type", "application/json;charset=UTF-8");
+		
+		 List<boardLIstDTO> mainDB = service.mainList(user_id);
+		
+		Gson gson = new Gson();
+		String data =  gson.toJson(mainDB);
+
+		System.out.println(data);
+		return new ResponseEntity<String>(data,resHeaders,HttpStatus.CREATED);
+		
+	}
 	
 	@RequestMapping("all_list_View")
 	@ResponseBody
@@ -42,11 +61,12 @@ public class MainViewController {
 	    resHeaders.add("Content-Type", "application/json;charset=UTF-8");
 
 	    List<boardLIstDTO> search = service.serachList();
-		
+	    
+	    
 		Gson gson = new Gson();
 		
 		String data =  gson.toJson(search);
-
+	
 		System.out.println(data);
 		return new ResponseEntity<String>(data, resHeaders, HttpStatus.CREATED);	    
 	}

@@ -90,7 +90,18 @@ public class boardLIstDTO {
 	public void setBoard_Date(Timestamp board_Date) {
 		this.board_Date = board_Date;
 	}
-	
+	public String getFile_Type() {
+		return file_Type;
+	}
+	public void setFile_Type(String file_Type) {
+		this.file_Type = file_Type;
+	}
+	public String getFile_Content() {
+		return file_Content;
+	}
+	public void setFile_Content(String file_Content) {
+		this.file_Content = file_Content;
+	}
 	
 	
 	

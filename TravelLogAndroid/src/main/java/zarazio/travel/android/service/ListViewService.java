@@ -6,5 +6,6 @@ import zarazio.travel.android.bean.boardLIstDTO;
 
 public interface ListViewService {
 	public List<boardLIstDTO> serachList()throws Exception;
+	public List<boardLIstDTO> mainList(String user_id)throws Exception;
 	public List<boardLIstDTO> serachListHashList(String hash_tag)throws Exception;
 }

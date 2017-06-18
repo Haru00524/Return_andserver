@@ -31,6 +31,12 @@ public List<boardLIstDTO> serachListHashList(String hash_tag) throws Exception {
 	// TODO Auto-generated method stub
 	return sqlSession.selectList(namespace+".share_Log_search_List", hash_tag);
 }
+
+@Override
+public List<boardLIstDTO> mainList(String main_user_id) throws Exception {
+	// TODO Auto-generated method stub
+	return sqlSession.selectList(namespace+".share_Log_main_List", main_user_id);
+}
 	
 	
 

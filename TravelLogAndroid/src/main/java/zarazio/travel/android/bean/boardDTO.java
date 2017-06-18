@@ -15,6 +15,7 @@ public class boardDTO {
 	private int place_Score;
 	private int step_Log_Code;
 	private int randomViewY;
+	private int step_code;
 	
 	public int getBoard_Code() {
 		return board_Code;
@@ -87,6 +88,12 @@ public class boardDTO {
 	}
 	public void setBoard_Date(Timestamp board_Date) {
 		this.board_Date = board_Date;
+	}
+	public int getStep_code() {
+		return step_code;
+	}
+	public void setStep_code(int step_code) {
+		this.step_code = step_code;
 	}
 	
 	

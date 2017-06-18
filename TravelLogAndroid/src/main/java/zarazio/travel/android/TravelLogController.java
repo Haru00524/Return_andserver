@@ -36,6 +36,7 @@ import zarazio.travel.android.bean.attachedFileDTO;
 import zarazio.travel.android.bean.boardDTO;
 import zarazio.travel.android.bean.hashTagDTO;
 import zarazio.travel.android.service.ARDataService;
+import zarazio.travel.android.service.StepService;
 import zarazio.travel.android.service.boardService;
 
 @Controller
@@ -46,7 +47,7 @@ public class TravelLogController {
 
 	@Inject
 	private boardService service;
-
+	
 	@RequestMapping(value="/boardList")
 	public ResponseEntity<String> ARDataList(ARFilterDTo arFilter) throws Exception {
 		HttpHeaders resHeaders = new HttpHeaders();
@@ -105,6 +106,7 @@ public class TravelLogController {
 		String user_id = null;
 		String originalName = "";
 		int file_Type=0;
+		int step_code = 0;
 		
 		HttpStatus a=HttpStatus.BAD_REQUEST;
 		
@@ -155,6 +157,9 @@ public class TravelLogController {
 		      }else if(item!=null && item.getFieldName().equals("file_Type")) {
 		          file_Type = Integer.parseInt(item.getString("EUC_KR"));
 		          System.out.println("파일 타입:"+file_Type+"<br>");
+		      }else if(item!=null && item.getFieldName().equals("step_log")) {
+		          step_code = Integer.parseInt(item.getString("EUC_KR"));
+		          System.out.println("파일 타입:"+step_code+"<br>");
 		      }
 	        }
 	        else{ // 폼 필드가 아니고 파일인 경우
@@ -197,6 +202,7 @@ public class TravelLogController {
         board.setShare_Type(share_Type);
         board.setUser_id(user_id);
         board.setRandomViewY(randomViewY);
+        board.setStep_code(step_code);
 	    
         hashTagDTO hash = new hashTagDTO();
         hash.setBoard_Code(maxboardCode);
