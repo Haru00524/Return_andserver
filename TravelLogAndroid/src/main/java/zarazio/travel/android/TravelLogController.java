@@ -159,7 +159,7 @@ public class TravelLogController {
 		          System.out.println("파일 타입:"+file_Type+"<br>");
 		      }else if(item!=null && item.getFieldName().equals("step_log")) {
 		          step_code = Integer.parseInt(item.getString("EUC_KR"));
-		          System.out.println("파일 타입:"+step_code+"<br>");
+		          System.out.println("step_Log_Code:"+step_code+"<br>");
 		      }
 	        }
 	        else{ // 폼 필드가 아니고 파일인 경우

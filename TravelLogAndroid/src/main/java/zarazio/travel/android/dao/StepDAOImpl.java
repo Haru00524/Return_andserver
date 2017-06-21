@@ -46,10 +46,16 @@ public static final String namespace = "travel.android.StepMapper" ;
 	}
 
 	@Override
-	public List<boardLIstDTO> stepList() throws Exception {
+	public List<boardLIstDTO> stepList(String step_log_code) throws Exception {
 		// TODO Auto-generated method stub
 		
-		return sqlSession.selectList(namespace+".step_list");
+		return sqlSession.selectList(namespace+".step_log_select", step_log_code);
+	}
+
+	@Override
+	public void StepLogDelete(int step_code) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.delete(namespace+".delete_Log_step", step_code);
 	}
 	
 

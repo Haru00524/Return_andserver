@@ -1,20 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<kml xmlns="http://www.opengis.net/kml/2.2">
- <Document xmlns="">
-  <name>kakao 발자취</name>
-  <open>1</open>
-  <Style id="lineStyle">
-   <LineStyle>
-    <Color>7f0000ff</Color>
-    <width>4</width>
-   </LineStyle>
-  </Style>
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:xal="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0">
   <Placemark>
-   <name>LineStyle</name>
-   <styleUrl>#lineStyle</styleUrl>
-   <LineString>
-    <extrude>1</extrude>
-    <tessellate>1</tessellate>
+        <open>1</open>
+        <LineString>
     <coordinates>128.5465625,35.9443796,0 
 128.5460804,35.9456242,0 
 128.5465625,35.9443796,0 
@@ -164,6 +152,5 @@
 128.5461625,35.9455387,0</coordinates>
    </LineString>
   </Placemark>
- </Document>
 </kml>
 

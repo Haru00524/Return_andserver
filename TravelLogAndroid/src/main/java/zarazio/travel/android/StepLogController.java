@@ -36,6 +36,7 @@ import zarazio.travel.android.bean.ARFilterDTo;
 import zarazio.travel.android.bean.StepLogDTO;
 import zarazio.travel.android.bean.attachedFileDTO;
 import zarazio.travel.android.bean.boardDTO;
+import zarazio.travel.android.bean.boardLIstDTO;
 import zarazio.travel.android.bean.hashTagDTO;
 import zarazio.travel.android.service.ARDataService;
 import zarazio.travel.android.service.StepService;
@@ -78,12 +79,28 @@ public class StepLogController {
 		int board_code = service.stepCodeSelect(user_id);
 		
 		System.out.println(board_code);
+		service.StepLogDelete(board_code);
 		service.StepDelete(board_code);
 		
 		return "success";
 		
 	}
+	@RequestMapping(value="/step_log_select")
+	public ResponseEntity<String> StepLog(String step_log_code) throws Exception {
+		HttpHeaders resHeaders = new HttpHeaders();
+		resHeaders.add("Content-Type", "application/json;charset=UTF-8");
+		List<boardLIstDTO> List = null;
+		
+		List = service.stepList(step_log_code);
+		
+		Gson gson = new Gson();
+		String data =  gson.toJson(List);
 
+		System.out.println(data);
+		return new ResponseEntity<String>(data,resHeaders,HttpStatus.CREATED);
+		
+	}
+	
 	@RequestMapping(value="/stepUpdate")
 	@ResponseBody
 	public ResponseEntity<String> inserLog(HttpServletRequest request) throws UnsupportedEncodingException{
@@ -165,6 +182,7 @@ public class StepLogController {
         try {
 
 			int step_code = service.stepCodeSelect(user_id);
+			System.out.println(step_code);
 			step_log.setBoard_code(step_code);
 			service.StepFileInsert(step_log);
 			

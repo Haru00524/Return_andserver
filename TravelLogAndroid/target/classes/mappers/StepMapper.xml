@@ -18,4 +18,11 @@
   	<delete id="delete_step">
   		delete from board where board_code = #{step_code}
   	</delete>
+  	<delete id="delete_Log_step">
+  		delete from board where step_Log_Code = #{step_code}
+  	</delete>
+  	<select id="step_log_select" resultType="boardLIstDTO">
+  		select * from board
+		where step_Log_Code = #{step_log_code} and board_Code != #{step_log_code}
+  	</select>
 </mapper>

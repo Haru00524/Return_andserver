@@ -5,7 +5,7 @@
 <mapper namespace="travel.android.boardMapper">
   	<insert id="Log_inset">
   		insert into board(board_Code, board_Title, board_Content, log_longtitude, log_latitude, share_Type, board_Type_Code, user_id, randomViewY, step_Log_Code)
-  		values (#{board_Code}, #{board_Title},#{board_Content},#{log_longtitude},#{log_latitude},#{share_Type},#{board_Type_Code},#{user_id}, #{randomViewY}, #{step_Log_Code})
+  		values (#{board_Code}, #{board_Title},#{board_Content},#{log_longtitude},#{log_latitude},#{share_Type},#{board_Type_Code},#{user_id}, #{randomViewY}, #{step_code})
   	</insert>
   	<insert id="hash_Tag_insert">
   		insert into hash_tag(board_Code, hash_Tag_Content)
@@ -22,7 +22,7 @@
   	<select id="share_Log_List" resultType="boardDTO">
   		select *
   		from board
-  		where share_Type = 1 and board_Type_Code =1
+  		where share_Type = 1 and board_Type_Code =1 and step_Log_Code = 0
   		ORDER BY board_Date DESC;
   	</select>
   	<select id="share_Log_main_List" resultType="boardLIstDTO">

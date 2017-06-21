@@ -43,9 +43,15 @@ public class StepServiceImpl implements StepService {
 	}
 
 	@Override
-	public List<boardLIstDTO> stepList() throws Exception {
+	public List<boardLIstDTO> stepList(String step_log_code) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.stepList();
+		return dao.stepList(step_log_code);
+	}
+
+	@Override
+	public void StepLogDelete(int step_code) throws Exception {
+		// TODO Auto-generated method stub
+		dao.StepDelete(step_code);
 	}
 	
 	
