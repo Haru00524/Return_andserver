@@ -3,37 +3,37 @@ package zarazio.travel.android.bean;
 import java.sql.Timestamp;
 
 public class boardDTO {
-	private int board_Code;
-    private String board_Title;
-	private String board_Content;
+	private int board_code;
+    private String board_title;
+	private String board_content;
 	private double log_longtitude;
 	private double log_latitude;
-	private int share_Type;
-	private Timestamp board_Date;
-	private int board_Type_Code;
+	private int share_type;
+	private Timestamp board_date;
+	private int board_type_code;
 	private String user_id;
-	private int place_Score;
-	private int step_Log_Code;
+	private int place_score;
+	private int step_log_code;
 	private int randomViewY;
-	private int step_code;
+	private int write_type;
 	
-	public int getBoard_Code() {
-		return board_Code;
+	public int getBoard_code() {
+		return board_code;
 	}
-	public void setBoard_Code(int board_Code) {
-		this.board_Code = board_Code;
+	public void setBoard_code(int board_code) {
+		this.board_code = board_code;
 	}
-	public String getBoard_Title() {
-		return board_Title;
+	public String getBoard_title() {
+		return board_title;
 	}
-	public void setBoard_Title(String board_Title) {
-		this.board_Title = board_Title;
+	public void setBoard_title(String board_title) {
+		this.board_title = board_title;
 	}
-	public String getBoard_Content() {
-		return board_Content;
+	public String getBoard_content() {
+		return board_content;
 	}
-	public void setBoard_Content(String board_Content) {
-		this.board_Content = board_Content;
+	public void setBoard_content(String board_content) {
+		this.board_content = board_content;
 	}
 	public double getLog_longtitude() {
 		return log_longtitude;
@@ -47,17 +47,23 @@ public class boardDTO {
 	public void setLog_latitude(double log_latitude) {
 		this.log_latitude = log_latitude;
 	}
-	public int getShare_Type() {
-		return share_Type;
+	public int getShare_type() {
+		return share_type;
 	}
-	public void setShare_Type(int share_Type) {
-		this.share_Type = share_Type;
+	public void setShare_type(int share_type) {
+		this.share_type = share_type;
 	}
-	public int getBoard_Type_Code() {
-		return board_Type_Code;
+	public Timestamp getBoard_date() {
+		return board_date;
 	}
-	public void setBoard_Type_Code(int board_Type_Code) {
-		this.board_Type_Code = board_Type_Code;
+	public void setBoard_date(Timestamp board_date) {
+		this.board_date = board_date;
+	}
+	public int getBoard_type_code() {
+		return board_type_code;
+	}
+	public void setBoard_type_code(int board_type_code) {
+		this.board_type_code = board_type_code;
 	}
 	public String getUser_id() {
 		return user_id;
@@ -65,17 +71,17 @@ public class boardDTO {
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
-	public int getPlace_Score() {
-		return place_Score;
+	public int getPlace_score() {
+		return place_score;
 	}
-	public void setPlace_Score(int place_Score) {
-		this.place_Score = place_Score;
+	public void setPlace_score(int place_score) {
+		this.place_score = place_score;
 	}
-	public int getStep_Log_Code() {
-		return step_Log_Code;
+	public int getStep_log_code() {
+		return step_log_code;
 	}
-	public void setStep_Log_Code(int step_Log_Code) {
-		this.step_Log_Code = step_Log_Code;
+	public void setStep_log_code(int step_log_code) {
+		this.step_log_code = step_log_code;
 	}
 	public int getRandomViewY() {
 		return randomViewY;
@@ -83,20 +89,11 @@ public class boardDTO {
 	public void setRandomViewY(int randomViewY) {
 		this.randomViewY = randomViewY;
 	}
-	public Timestamp getBoard_Date() {
-		return board_Date;
+	public int getWrite_type() {
+		return write_type;
 	}
-	public void setBoard_Date(Timestamp board_Date) {
-		this.board_Date = board_Date;
+	public void setWrite_type(int write_type) {
+		this.write_type = write_type;
 	}
-	public int getStep_code() {
-		return step_code;
-	}
-	public void setStep_code(int step_code) {
-		this.step_code = step_code;
-	}
-	
-	
-	
 	
 }

@@ -1,34 +1,35 @@
 package zarazio.travel.android.bean;
 
 public class attachedFileDTO {
-    private String file_Content;
-    private int file_Type;
-    private int Travel_Camera_order;
-    private int board_Code;
-	public String getFile_Content() {
-		return file_Content;
+    private String file_content;
+    private int file_type;
+    private int Travel_camera_order;
+    private int board_code;
+	public String getFile_content() {
+		return file_content;
 	}
-	public void setFile_Content(String file_Content) {
-		this.file_Content = file_Content;
+	public void setFile_content(String file_content) {
+		this.file_content = file_content;
 	}
-	public int getFile_Type() {
-		return file_Type;
+	public int getFile_type() {
+		return file_type;
 	}
-	public void setFile_Type(int file_Type) {
-		this.file_Type = file_Type;
+	public void setFile_type(int file_type) {
+		this.file_type = file_type;
 	}
-	public int getTravel_Camera_order() {
-		return Travel_Camera_order;
+	public int getTravel_camera_order() {
+		return Travel_camera_order;
 	}
-	public void setTravel_Camera_order(int travel_Camera_order) {
-		Travel_Camera_order = travel_Camera_order;
+	public void setTravel_camera_order(int travel_camera_order) {
+		Travel_camera_order = travel_camera_order;
 	}
-	public int getBoard_Code() {
-		return board_Code;
+	public int getBoard_code() {
+		return board_code;
 	}
-	public void setBoard_Code(int board_Code) {
-		this.board_Code = board_Code;
+	public void setBoard_code(int board_code) {
+		this.board_code = board_code;
 	}
+	
     
 	
 }

@@ -107,6 +107,7 @@ public class TravelLogController {
 		String originalName = "";
 		int file_Type=0;
 		int step_code = 0;
+		int write_type= 1;
 		
 		HttpStatus a=HttpStatus.BAD_REQUEST;
 		
@@ -137,7 +138,7 @@ public class TravelLogController {
 	        	  board_Content = item.getString("EUC_KR");
 	        	  System.out.println("로그 내용:"+board_Content+"<br>");
 	          }else if(item!=null && item.getFieldName().equals("hash_tag")) {
-		          hash_Tag = item.getString("EUC_KR");
+		          hash_Tag = "#"+item.getString("EUC_KR");
 		          System.out.println("해시태그 내용:"+hash_Tag+"<br>");
 		      }else if(item!=null && item.getFieldName().equals("log_longtitude")) {
 		          log_longtitude = Double.parseDouble(item.getString("EUC_KR"));
@@ -193,25 +194,26 @@ public class TravelLogController {
         
        	int randomViewY = (int)(Math.random()*1500)-700;
        	
-        board.setBoard_Code(maxboardCode);
-        board.setBoard_Title(board_Title);
-        board.setBoard_Content(board_Content);
-        board.setBoard_Type_Code(board_Type_Code);
+        board.setBoard_code(maxboardCode);
+        board.setBoard_title(board_Title);
+        board.setBoard_content(board_Content);
+        board.setBoard_type_code(board_Type_Code);
         board.setLog_latitude(log_latitude);
         board.setLog_longtitude(log_longtitude);
-        board.setShare_Type(share_Type);
+        board.setShare_type(share_Type);
         board.setUser_id(user_id);
         board.setRandomViewY(randomViewY);
-        board.setStep_code(step_code);
+        board.setStep_log_code(step_code);
+        board.setWrite_type(write_type);
 	    
         hashTagDTO hash = new hashTagDTO();
-        hash.setBoard_Code(maxboardCode);
-        hash.setHash_Tag_Content(hash_Tag);
+        hash.setBoard_code(maxboardCode);
+        hash.setHash_tag_content(hash_Tag);
         
         attachedFileDTO file = new attachedFileDTO();
-        file.setBoard_Code(maxboardCode);
-        file.setFile_Content(originalName);
-        file.setFile_Type(file_Type);
+        file.setBoard_code(maxboardCode);
+        file.setFile_content(originalName);
+        file.setFile_type(file_Type);
         
         try {
 			service.insertBoard(board);

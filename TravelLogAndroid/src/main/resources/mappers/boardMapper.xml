@@ -4,73 +4,73 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="travel.android.boardMapper">
   	<insert id="Log_inset">
-  		insert into board(board_Code, board_Title, board_Content, log_longtitude, log_latitude, share_Type, board_Type_Code, user_id, randomViewY, step_Log_Code)
-  		values (#{board_Code}, #{board_Title},#{board_Content},#{log_longtitude},#{log_latitude},#{share_Type},#{board_Type_Code},#{user_id}, #{randomViewY}, #{step_code})
+  		insert into board(board_code, board_title, board_content, log_longtitude, log_latitude, share_type, board_type_code, user_id, randomViewY, step_log_code, write_type)
+  		values (#{board_code}, #{board_title},#{board_content},#{log_longtitude},#{log_latitude},#{share_type},#{board_type_code},#{user_id}, #{randomViewY}, #{step_log_code}, #{write_type})
   	</insert>
   	<insert id="hash_Tag_insert">
-  		insert into hash_tag(board_Code, hash_Tag_Content)
-  		values (#{board_Code}, #{hash_Tag_Content})
+  		insert into hash_tag(board_code, hash_tag_content)
+  		values (#{board_code}, #{hash_tag_content})
   	</insert>
   	<insert id="attachecFile">
-  		insert into attached_file(board_Code, file_Content, file_Type)
-  		value (#{board_Code}, #{file_Content}, #{file_Type})
+  		insert into attached_file(board_code, file_content, file_type)
+  		value (#{board_code}, #{file_content}, #{file_type})
   	</insert>
   	<select id="max_board_code" resultType="int">
-  		select max(board_Code)
+  		select max(board_code)
   		from board;
   	</select>
   	<select id="share_Log_List" resultType="boardDTO">
   		select *
   		from board
-  		where share_Type = 1 and board_Type_Code =1 and step_Log_Code = 0
-  		ORDER BY board_Date DESC;
+  		where share_type = 1 and board_type_code =1 and step_log_code = 0
+  		ORDER BY board_date DESC;
   	</select>
   	<select id="share_Log_main_List" resultType="boardLIstDTO">
-  		select distinct a.*, b.file_Type, b.file_Content
+  		select distinct a.*, b.file_type, b.file_content
   		from friend_list d, board a
         LEFT OUTER JOIN attached_file b
         ON a.board_Code = b.board_Code
   		where (d.user_id = a.user_id or d.friend_id = a.user_id) and
-        a.share_Type = 1 and a.user_id != #{main_user_id} and d.friend_accept =1 and (step_Log_Code = 0 or board_Type_Code =3)
-  		ORDER BY board_Date DESC;
+        a.share_type = 1 and a.user_id != #{main_user_id} and d.friend_accept =1 and (step_log_code = 0 or board_type_code =3)
+  		ORDER BY board_date DESC;
   	</select>
   	<select id="share_Log_all_List" resultType="boardLIstDTO">
-  		select a.*, b.file_Type, b.file_Content
+  		select a.*, b.file_type, b.file_content
   		from board a
         LEFT OUTER JOIN attached_file b
-        ON a.board_Code = b.board_Code
-  		where  a.share_Type = 1 and (step_Log_Code = 0 or board_Type_Code =3)
-  		ORDER BY board_Date DESC;
+        ON a.board_code = b.board_code
+  		where  a.share_type = 1 and (step_log_code = 0 or board_type_code =3)
+  		ORDER BY board_date DESC;
   	</select>
   	<select id="share_Log_search_List" resultType="boardLIstDTO">
-  		select a.*, b.file_Type, b.file_Content
+  		select a.*, b.file_type, b.file_content
   		from hash_tag c, board a
         LEFT OUTER JOIN attached_file b
-        ON a.board_Code = b.board_Code
-  		where  a.share_Type = 1 and c.board_Code = a.board_Code and c.hash_tag_Content LIKE CONCAT('%',#{hash_tag},'%') and (step_Log_Code = 0 or board_Type_Code =3)
-  		ORDER BY board_Date DESC;
+        ON a.board_code = b.board_code
+  		where  a.share_type = 1 and c.board_code = a.board_code and c.hash_tag_content LIKE CONCAT('%',#{hash_tag},'%') and (step_log_code = 0 or board_type_code =3)
+  		ORDER BY board_date DESC;
   	</select>
   	<select id="share_Log_hash_List" resultType="boardDTO">
   		SELECT a.*
   		FROM board a,hash_tag b
-  		WHERE a.board_Code = b.board_Code and b.hash_tag_Content LIKE CONCAT('%',#{hash_tag},'%') and a.share_Type = 1 and (step_Log_Code = 0 or board_Type_Code =3)
-  		ORDER BY board_Date DESC; 
+  		WHERE a.board_code = b.board_code and b.hash_tag_content LIKE CONCAT('%',#{hash_tag},'%') and a.share_type = 1 and (step_log_code = 0 or board_type_code =3)
+  		ORDER BY board_date DESC; 
   	</select>
   		<select id="share_Log_like_List" resultType="boardDTO">
   		select *
   		from board
-  		where share_Type = 1 and (step_Log_Code = 0 or board_Type_Code =3)
+  		where share_type = 1 and (step_log_code = 0 or board_type_code =3)
   		ORDER BY like DESC; 
   	</select>
   		<select id="share_Log_Like_hash_List" resultType="boardDTO">
   		SELECT a.*
   		FROM board a,hash_tag b
-  		WHERE a.board_Code = b.board_Code and b.hash_tag_Content LIKE CONCAT('%',#{hash_tag},'%') and a.share_Type =1 and (step_Log_Code = 0 or board_Type_Code =3)
+  		WHERE a.board_code = b.board_code and b.hash_tag_content LIKE CONCAT('%',#{hash_tag},'%') and a.share_type =1 and (step_log_code = 0 or board_type_code =3)
   		ORDER BY like DESC; 
   	</select>
   	<select id="addFile" resultType="addachedFileDTO">
   		select *
   		from attached_file
-  		where board_Code = #{board_code}
+  		where board_code = #{board_code}
   	</select>
 </mapper>

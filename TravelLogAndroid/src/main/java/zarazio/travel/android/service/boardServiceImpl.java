@@ -27,9 +27,9 @@ public class boardServiceImpl implements boardService {
 	@Override
 	public void insertHash(hashTagDTO hash) throws Exception {
 		// TODO Auto-generated method stub
-		StringTokenizer st = new StringTokenizer(hash.getHash_Tag_Content()," ");
+		StringTokenizer st = new StringTokenizer(hash.getHash_tag_content()," ");
 		while(st.hasMoreTokens()){
-			hash.setHash_Tag_Content(st.nextToken());
+			hash.setHash_tag_content(st.nextToken());
 			dao.insertHash(hash);
 		}
 	}

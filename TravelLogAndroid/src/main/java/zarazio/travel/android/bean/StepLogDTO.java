@@ -1,29 +1,28 @@
 package zarazio.travel.android.bean;
 
 public class StepLogDTO {
-	private String board_Title;
-	private int share_Type;
-	private String file_Content;
+	private String board_title;
+	private int share_type;
+	private String file_content;
 	private String user_id;
 	private int board_code;
-	
-	public String getBoard_Title() {
-		return board_Title;
+	public String getBoard_title() {
+		return board_title;
 	}
-	public void setBoard_Title(String board_Title) {
-		this.board_Title = board_Title;
+	public void setBoard_title(String board_title) {
+		this.board_title = board_title;
 	}
-	public int getShare_Type() {
-		return share_Type;
+	public int getShare_type() {
+		return share_type;
 	}
-	public void setShare_Type(int share_Type) {
-		this.share_Type = share_Type;
+	public void setShare_type(int share_type) {
+		this.share_type = share_type;
 	}
-	public String getFile_Content() {
-		return file_Content;
+	public String getFile_content() {
+		return file_content;
 	}
-	public void setFile_Content(String file_Content) {
-		this.file_Content = file_Content;
+	public void setFile_content(String file_content) {
+		this.file_content = file_content;
 	}
 	public String getUser_id() {
 		return user_id;
@@ -37,6 +36,7 @@ public class StepLogDTO {
 	public void setBoard_code(int board_code) {
 		this.board_code = board_code;
 	}
+	
 	
 	
 }

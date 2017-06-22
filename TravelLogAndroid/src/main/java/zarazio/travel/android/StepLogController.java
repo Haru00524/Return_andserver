@@ -174,10 +174,10 @@ public class StepLogController {
 		
 		StepLogDTO step_log = new StepLogDTO();
        	
-       	step_log.setBoard_Title(step_title);
-        step_log.setShare_Type(share_Type);
+       	step_log.setBoard_code(Integer.parseInt(step_title));
+        step_log.setShare_type(share_Type);
         step_log.setUser_id(user_id);
-        step_log.setFile_Content(originalName);
+        step_log.setFile_content(originalName);
         
         try {
 
@@ -187,9 +187,9 @@ public class StepLogController {
 			service.StepFileInsert(step_log);
 			
 			attachedFileDTO file = new attachedFileDTO();
-	        file.setBoard_Code(step_code);
-	        file.setFile_Content(originalName);
-	        file.setFile_Type(file_Type);
+	        file.setBoard_code(step_code);
+	        file.setFile_content(originalName);
+	        file.setFile_type(file_Type);
 	        
 	        boardservice.insertFile(file);
 	        
