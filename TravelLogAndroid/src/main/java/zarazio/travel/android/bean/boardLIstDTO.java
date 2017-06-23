@@ -13,7 +13,7 @@ public class boardLIstDTO {
 	private int board_type_code;
 	private String user_id;
 	private int place_score;
-	private int step_log_Code;
+	private int step_log_code;
 	private int randomViewY;
 	private String file_type;
 	private String file_content;
@@ -79,11 +79,11 @@ public class boardLIstDTO {
 	public void setPlace_score(int place_score) {
 		this.place_score = place_score;
 	}
-	public int getStep_log_Code() {
-		return step_log_Code;
+	public int getStep_log_code() {
+		return step_log_code;
 	}
-	public void setStep_log_Code(int step_log_Code) {
-		this.step_log_Code = step_log_Code;
+	public void setStep_log_code(int step_log_code) {
+		this.step_log_code = step_log_code;
 	}
 	public int getRandomViewY() {
 		return randomViewY;
@@ -110,6 +110,6 @@ public class boardLIstDTO {
 		this.write_type = write_type;
 	}
 	
-
+	
 	
 }

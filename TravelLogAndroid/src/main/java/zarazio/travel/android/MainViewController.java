@@ -7,6 +7,8 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import zarazio.travel.android.bean.ARDataInfo;
 import zarazio.travel.android.bean.boardDTO;
@@ -47,7 +50,7 @@ public class MainViewController {
 		
 		Gson gson = new Gson();
 		String data =  gson.toJson(mainDB);
-
+		
 		System.out.println(data);
 		return new ResponseEntity<String>(data,resHeaders,HttpStatus.CREATED);
 		

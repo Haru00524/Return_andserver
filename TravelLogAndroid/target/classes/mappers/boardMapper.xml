@@ -23,6 +23,7 @@
   		select *
   		from board
   		where share_type = 1 and board_type_code =1 and step_log_code = 0
+        group by board_code
   		ORDER BY board_date DESC;
   	</select>
   	<select id="share_Log_main_List" resultType="boardLIstDTO">
@@ -32,6 +33,7 @@
         ON a.board_Code = b.board_Code
   		where (d.user_id = a.user_id or d.friend_id = a.user_id) and
         a.share_type = 1 and a.user_id != #{main_user_id} and d.friend_accept =1 and (step_log_code = 0 or board_type_code =3)
+        group by board_code
   		ORDER BY board_date DESC;
   	</select>
   	<select id="share_Log_all_List" resultType="boardLIstDTO">
@@ -40,7 +42,9 @@
         LEFT OUTER JOIN attached_file b
         ON a.board_code = b.board_code
   		where  a.share_type = 1 and (step_log_code = 0 or board_type_code =3)
+        group by board_code
   		ORDER BY board_date DESC;
+        
   	</select>
   	<select id="share_Log_search_List" resultType="boardLIstDTO">
   		select a.*, b.file_type, b.file_content
@@ -48,24 +52,28 @@
         LEFT OUTER JOIN attached_file b
         ON a.board_code = b.board_code
   		where  a.share_type = 1 and c.board_code = a.board_code and c.hash_tag_content LIKE CONCAT('%',#{hash_tag},'%') and (step_log_code = 0 or board_type_code =3)
+        group by board_code
   		ORDER BY board_date DESC;
   	</select>
   	<select id="share_Log_hash_List" resultType="boardDTO">
   		SELECT a.*
   		FROM board a,hash_tag b
   		WHERE a.board_code = b.board_code and b.hash_tag_content LIKE CONCAT('%',#{hash_tag},'%') and a.share_type = 1 and (step_log_code = 0 or board_type_code =3)
+        group by board_code
   		ORDER BY board_date DESC; 
   	</select>
   		<select id="share_Log_like_List" resultType="boardDTO">
   		select *
   		from board
   		where share_type = 1 and (step_log_code = 0 or board_type_code =3)
+        group by board_code
   		ORDER BY like DESC; 
   	</select>
   		<select id="share_Log_Like_hash_List" resultType="boardDTO">
   		SELECT a.*
   		FROM board a,hash_tag b
   		WHERE a.board_code = b.board_code and b.hash_tag_content LIKE CONCAT('%',#{hash_tag},'%') and a.share_type =1 and (step_log_code = 0 or board_type_code =3)
+        group by board_code
   		ORDER BY like DESC; 
   	</select>
   	<select id="addFile" resultType="addachedFileDTO">
