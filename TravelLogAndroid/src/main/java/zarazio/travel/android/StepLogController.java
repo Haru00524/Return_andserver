@@ -155,7 +155,7 @@ public class StepLogController {
 	                // 전송된 파일을 서버에 저장하기 위한 절차
 	                //String rootPath = getServletContext().getRealPath("/");
 	                originalName = System.currentTimeMillis()+"Step_log";
-	                File savedFile = new File("C:/Return_andserver/TravelLogAndroid/src/main/webapp/resources/upload/step_Log/"+ originalName+fileName); 
+	                File savedFile = new File("C:/Return/src/main/webapp/resources/upload/step_Log/"+ originalName+fileName); 
 	                item.write(savedFile);// 지정 경로에 파일을 저장함
 	                originalName += fileName;
 	                System.out.println("<tr><td><b>파일저장 경로:</b></td></tr><tr><td><b>"+savedFile+"</td></tr>");
@@ -174,7 +174,7 @@ public class StepLogController {
 		
 		StepLogDTO step_log = new StepLogDTO();
        	
-       	step_log.setBoard_code(Integer.parseInt(step_title));
+       	step_log.setBoard_title(step_title);
         step_log.setShare_type(share_Type);
         step_log.setUser_id(user_id);
         step_log.setFile_content(originalName);

@@ -172,7 +172,7 @@ public class TravelLogController {
 	                // 전송된 파일을 서버에 저장하기 위한 절차
 	                //String rootPath = getServletContext().getRealPath("/");
 	                originalName = System.currentTimeMillis()+"Travel_log_";
-	                File savedFile = new File("C:/Return_andserver/TravelLogAndroid/src/main/webapp/resources/upload/"+ originalName+fileName); 
+	                File savedFile = new File("C:/Return/src/main/webapp/resources/upload/logs/"+ originalName+fileName); 
 	                item.write(savedFile);// 지정 경로에 파일을 저장함
 	                originalName += fileName;
 	                System.out.println("<tr><td><b>파일저장 경로:</b></td></tr><tr><td><b>"+savedFile+"</td></tr>");
