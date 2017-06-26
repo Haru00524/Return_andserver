@@ -30,14 +30,14 @@ public class MemberController {
 	@Inject
 	private JavaMailSender mailSender;
 
-	@RequestMapping("register")
+	@RequestMapping(value="/register")
 	public void androidTest2(HttpServletRequest request, Member member) throws Exception {
 
 		service.insert(member);
 
 	}
 
-	@RequestMapping("idCheck")
+	@RequestMapping(value="/idCheck")
 	@ResponseBody
 	public String androidIdCheck(HttpServletRequest request, Member member) throws Exception {
 

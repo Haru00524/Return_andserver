@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="travel.android.TravelStoryMapper">
+     <insert id="expenseInsert">
+        insert into income_disbursement_tbl (expense_Content, expense_Cost) values(#{expense_Content}, #{expense_Cost})
+     </insert>
+     <select id="fineMaxExpenseCode" resultType="int">
+        select MAX(expense_Code)
+        from income_disbursement_tbl
+     </select>
+     <insert id="expenseInsertTravel">
+     	insert into write_travel (group_Code, user_id, expense_Code) values (#{group_Code}, #{user_id}, #{expense_Code})
+     </insert>
+     <select id="titleSearch" resultType="TravelStory">
+        select tg.group_Code group_Code, tg.travel_Title travel_Title, tg.start_Date start_Date, tg.end_Date end_Date
+      	from travel_group tg, group_application ga
+      	where tg.group_Code = ga.group_Code
+      	AND ga.group_apply = 1 AND ga.user_id=#{user_id}
+     </select>
+     <select id="DivisionSearch" resultType="TravelStory">
+     	select coin_Limit, sc_Division
+     	from travel_group
+     	where group_Code=#{group_Code}
+     </select>
+</mapper>

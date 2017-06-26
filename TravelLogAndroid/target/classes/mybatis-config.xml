@@ -11,5 +11,6 @@
 		<typeAlias alias="boardLIstDTO" type="zarazio.travel.android.bean.boardLIstDTO" /> 
 		<typeAlias alias="addachedFileDTO" type="zarazio.travel.android.bean.attachedFileDTO" /> 
 		<typeAlias alias="steplogDTO" type="zarazio.travel.android.bean.StepLogDTO" /> 
+		<typeAlias alias="TravelStory" type="zarazio.travel.android.bean.TravelStory" /> 
 	</typeAliases>
 </configuration>

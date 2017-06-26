@@ -138,7 +138,7 @@ public class TravelLogController {
 	        	  board_Content = item.getString("EUC_KR");
 	        	  System.out.println("로그 내용:"+board_Content+"<br>");
 	          }else if(item!=null && item.getFieldName().equals("hash_tag")) {
-		          hash_Tag = "#"+item.getString("EUC_KR");
+		          hash_Tag = item.getString("EUC_KR");
 		          System.out.println("해시태그 내용:"+hash_Tag+"<br>");
 		      }else if(item!=null && item.getFieldName().equals("log_longtitude")) {
 		          log_longtitude = Double.parseDouble(item.getString("EUC_KR"));

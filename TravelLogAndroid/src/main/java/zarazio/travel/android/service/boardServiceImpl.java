@@ -29,7 +29,7 @@ public class boardServiceImpl implements boardService {
 		// TODO Auto-generated method stub
 		StringTokenizer st = new StringTokenizer(hash.getHash_tag_content()," ");
 		while(st.hasMoreTokens()){
-			hash.setHash_tag_content(st.nextToken());
+			hash.setHash_tag_content("#"+st.nextToken());
 			dao.insertHash(hash);
 		}
 	}
