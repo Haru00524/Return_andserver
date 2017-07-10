@@ -10,4 +10,5 @@ public interface TravelStoryService {
    public void expenseInsertTravel(TravelStory travelstory) throws Exception;
    public List<TravelStory> titleSearch(String user_id) throws Exception;
    public List<TravelStory> DivisionSearch(String group_Code) throws Exception; // 여비한도와 구분찾기
+   public List<TravelStory> selectExpense(String group_Code) throws Exception;
 }

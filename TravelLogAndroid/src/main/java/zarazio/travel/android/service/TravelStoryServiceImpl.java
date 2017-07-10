@@ -23,16 +23,22 @@ public class TravelStoryServiceImpl implements TravelStoryService {
    }
    
    @Override
-	public int fineMaxExpenseCode() throws Exception {
-		// TODO Auto-generated method stub
-		return dao.fineMaxExpenseCode();
-	}
+   public int fineMaxExpenseCode() throws Exception {
+      // TODO Auto-generated method stub
+      return dao.fineMaxExpenseCode();
+   }
 
    @Override
-	public void expenseInsertTravel(TravelStory travelstory) throws Exception {
-		// TODO Auto-generated method stub
-		dao.expenseInsertTravel(travelstory);
-	}
+public List<TravelStory> selectExpense(String group_Code) throws Exception {
+   // TODO Auto-generated method stub
+   return dao.selectExpense(group_Code);
+}
+
+@Override
+   public void expenseInsertTravel(TravelStory travelstory) throws Exception {
+      // TODO Auto-generated method stub
+      dao.expenseInsertTravel(travelstory);
+   }
 
 @Override
    public List<TravelStory> titleSearch(String user_id) throws Exception {
@@ -40,9 +46,9 @@ public class TravelStoryServiceImpl implements TravelStoryService {
       return dao.titleSearch(user_id); // 하위객체의 클래스를 사용
    }
 
-	@Override
-	public List<TravelStory> DivisionSearch(String group_Code) throws Exception {
-		// TODO Auto-generated method stub
-		return dao.DivisionSearch(group_Code);
-	}
+   @Override
+   public List<TravelStory> DivisionSearch(String group_Code) throws Exception {
+      // TODO Auto-generated method stub
+      return dao.DivisionSearch(group_Code);
+   }
 }

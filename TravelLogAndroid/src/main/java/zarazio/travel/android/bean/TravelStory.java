@@ -12,30 +12,37 @@ public class TravelStory {
    private String sc_Division; // 여비구분
    private String expense_Content; // 지출내역
    private int expense_Cost; // 지출금액
+   private Date expense_Date; // 지출날짜
    
-   public String getSc_Division() {
-	return sc_Division;
-	}
-	public void setSc_Division(String sc_Division) {
-		this.sc_Division = sc_Division;
-	}
-	
-	private int expense_Code; // 지출코드
-	   
-	   public int getExpense_Code() {
-		return expense_Code;
-	}
-	public void setExpense_Code(int expense_Code) {
-		this.expense_Code = expense_Code;
-	}
-	public int getGroup_Code() {
-	   return group_Code;
+   public Date getExpense_Date() {
+   return expense_Date;
+}
+public void setExpense_Date(Date expense_Date) {
+   this.expense_Date = expense_Date;
+}
+public String getSc_Division() {
+   return sc_Division;
+   }
+   public void setSc_Division(String sc_Division) {
+      this.sc_Division = sc_Division;
+   }
+   
+   private int expense_Code; // 지출코드
+      
+      public int getExpense_Code() {
+      return expense_Code;
+   }
+   public void setExpense_Code(int expense_Code) {
+      this.expense_Code = expense_Code;
+   }
+   public int getGroup_Code() {
+      return group_Code;
    }
    public void setGroup_Code(int group_Code) {
-	   this.group_Code = group_Code;
+      this.group_Code = group_Code;
    }
    public String getExpense_Content() {
-	   return expense_Content;
+      return expense_Content;
    }
    public void setExpense_Content(String expense_Content) {
       this.expense_Content = expense_Content;

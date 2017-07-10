@@ -12,4 +12,5 @@ public interface TravelStoryDAO {
    public void expenseInsertTravel(TravelStory travelstory) throws Exception; // 어떤그룹에서 누가 어떤 금액코드를 사용했는지 입력
    public List<TravelStory> titleSearch(String user_id) throws Exception;
    public List<TravelStory> DivisionSearch(String group_Code) throws Exception; // 여비한도와 구분찾기
+   public List<TravelStory> selectExpense(String group_Code) throws Exception;
 }

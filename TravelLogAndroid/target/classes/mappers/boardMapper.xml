@@ -22,7 +22,7 @@
   	<select id="share_Log_List" resultType="boardDTO">
   		select *
   		from board
-  		where share_type = 1 and and (a.board_type_code between 1 and 3) and and step_log_code = 0
+  		where share_type = 1 and (board_type_code between 1 and 3) and step_log_code = 0
         group by board_code
   		ORDER BY board_date DESC;
   	</select>

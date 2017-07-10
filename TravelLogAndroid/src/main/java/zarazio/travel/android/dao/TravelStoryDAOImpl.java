@@ -26,20 +26,25 @@ public class TravelStoryDAOImpl implements TravelStoryDAO {
       sqlSession.insert(namespace+".expenseInsert", travelstory);
    }
    @Override
-	public void expenseInsertTravel(TravelStory travelstory) throws Exception {
-		// TODO Auto-generated method stub
-		   sqlSession.insert(namespace+".expenseInsertTravel", travelstory); 
-	}
-	@Override
-	public List<TravelStory> DivisionSearch(String group_Code) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList(namespace+".DivisionSearch", group_Code);
-	}
-	@Override
-	public int fineMaxExpenseCode() throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne(namespace+".fineMaxExpenseCode");
-	}
+public List<TravelStory> selectExpense(String group_Code) throws Exception {
+   // TODO Auto-generated method stub
+   return sqlSession.selectList(namespace+".selectExpense", group_Code);
+}
+@Override
+   public void expenseInsertTravel(TravelStory travelstory) throws Exception {
+      // TODO Auto-generated method stub
+         sqlSession.insert(namespace+".expenseInsertTravel", travelstory); 
+   }
+   @Override
+   public List<TravelStory> DivisionSearch(String group_Code) throws Exception {
+      // TODO Auto-generated method stub
+      return sqlSession.selectList(namespace+".DivisionSearch", group_Code);
+   }
+   @Override
+   public int fineMaxExpenseCode() throws Exception {
+      // TODO Auto-generated method stub
+      return sqlSession.selectOne(namespace+".fineMaxExpenseCode");
+   }
    @Override
    public List<TravelStory> titleSearch(String user_id) throws Exception {
       // TODO Auto-generated method stub1

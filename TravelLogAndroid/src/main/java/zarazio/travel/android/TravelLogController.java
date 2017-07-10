@@ -1,5 +1,6 @@
 package zarazio.travel.android;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -11,6 +12,7 @@ import java.util.Random;
 import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.imageio.ImageIO;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +23,7 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
+import org.imgscalr.Scalr;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -172,8 +175,13 @@ public class TravelLogController {
 	                // 전송된 파일을 서버에 저장하기 위한 절차
 	                //String rootPath = getServletContext().getRealPath("/");
 	                originalName = System.currentTimeMillis()+"Travel_log_";
-	                File savedFile = new File("C:/Return/src/main/webapp/resources/upload/logs/"+ originalName+fileName); 
+	                File savedFile = new File("C:/Returns/src/main/webapp/resources/upload/logs/"+ originalName+fileName);
+
 	                item.write(savedFile);// 지정 경로에 파일을 저장함
+	        		String uploadedFileName = null;
+	        		 // 이미지 파일은 썸네일 사용
+	        			// 썸네일생성 
+	        		uploadedFileName = makeThumbnail("C:/Returns/src/main/webapp/resources/upload/logs/", originalName+fileName);
 	                originalName += fileName;
 	                System.out.println("<tr><td><b>파일저장 경로:</b></td></tr><tr><td><b>"+savedFile+"</td></tr>");
 	                System.out.println("<tr><td><b><a href=\"DownloadServlet?file="+fileName+"\">"+originalName+"</a></td></tr>");
@@ -192,6 +200,7 @@ public class TravelLogController {
 		}
        boardDTO board = new boardDTO();
         
+       System.out.println(board_Content);
        	int randomViewY = (int)(Math.random()*1500)-700;
        	
         board.setBoard_code(maxboardCode);
@@ -231,4 +240,23 @@ public class TravelLogController {
 		return new ResponseEntity<String>("success", resHeaders, a);
 	}
 
+	// 썸네일 생성 
+		private static String makeThumbnail(String uploadPath, String fileName) throws Exception{
+			// 이미지를 읽어들이기 위한 버퍼
+			BufferedImage sourceImg = 
+					ImageIO.read(new File(uploadPath, fileName));
+			// 100 픽셀단위 썸네일 생성
+			BufferedImage destImg = 
+					Scalr.resize(sourceImg, 600, null, null);
+//					Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT, 100);
+			// 썸네일의 이름생성 "s_"를 붙임
+			String thumbnailName = 
+					uploadPath +"s_"+ fileName;
+			File newFile = new File(thumbnailName);
+			// 썸네일 생성
+			ImageIO.write(destImg, "jpg", newFile);
+			
+			// 썸네일의 이름을 리턴 
+			return thumbnailName.substring(uploadPath.length()).replace(File.separatorChar, '/');
+		}
 }

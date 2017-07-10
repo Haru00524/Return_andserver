@@ -1,5 +1,6 @@
 package zarazio.travel.android;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -11,6 +12,7 @@ import java.util.Random;
 import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.imageio.ImageIO;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +23,7 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
+import org.imgscalr.Scalr;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -154,10 +157,10 @@ public class StepLogController {
 	                if(fileName.equals("null")) continue;
 	                // 전송된 파일을 서버에 저장하기 위한 절차
 	                //String rootPath = getServletContext().getRealPath("/");
-	                originalName = System.currentTimeMillis()+"Step_log";
-	                File savedFile = new File("C:/Return/src/main/webapp/resources/upload/step_Log/"+ originalName+fileName); 
+	                originalName = System.currentTimeMillis()+"Travel_log_";
+	                File savedFile = new File("C:/Returns/src/main/webapp/resources/upload/logs/"+ originalName+fileName);
+
 	                item.write(savedFile);// 지정 경로에 파일을 저장함
-	                originalName += fileName;
 	                System.out.println("<tr><td><b>파일저장 경로:</b></td></tr><tr><td><b>"+savedFile+"</td></tr>");
 	                System.out.println("<tr><td><b><a href=\"DownloadServlet?file="+fileName+"\">"+originalName+"</a></td></tr>");
 	             } catch (Exception e) {
