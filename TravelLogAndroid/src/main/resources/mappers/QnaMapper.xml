@@ -3,8 +3,18 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="zara.zio.qnaMapper">
-  	<insert id="QnA_inset">
-  		
-  	</insert>
-  
+	<insert id="QnA_inset">
+
+	</insert>
+	<select id="boardserch" resultType="int">
+	<![CDATA[
+		SELECT ifnull(max(board_code),-1) as board_code
+		FROM board
+		where 
+		(6371*acos(cos(radians(#{latitude}))*cos(radians(log_latitude))*cos(radians(log_longtitude)
+		-radians(#{log_longtitude}))+sin(radians(#{latitude}))*sin(radians(log_latitude)))) <= 0.05
+		ORDER BY board_date
+		LIMIT 0,1
+		]]>
+	</select>
 </mapper>

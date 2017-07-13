@@ -21,6 +21,7 @@ public class boardDTO {
 		return board_code;
 	}
 	public void setBoard_code(int board_code) {
+		
 		this.board_code = board_code;
 	}
 	public String getBoard_title() {
