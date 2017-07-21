@@ -86,4 +86,8 @@
   		from attached_file
   		where board_code = #{board_code}
   	</select>
+  	<insert id="likeInsert">
+  		insert into board_like(user_id, board_code)
+  		values (#{user_id}, #{board_code})
+  	</insert>
 </mapper>

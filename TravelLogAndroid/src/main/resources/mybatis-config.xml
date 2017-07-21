@@ -16,5 +16,6 @@
 			type="zarazio.travel.android.bean.attachedFileDTO" />
 		<typeAlias alias="steplogDTO" type="zarazio.travel.android.bean.StepLogDTO" />
 		<typeAlias alias="TravelStory" type="zarazio.travel.android.bean.TravelStory" />
+		<typeAlias alias="QnaBean" type="zarazio.travel.android.bean.QnaBean" />
 	</typeAliases>
 </configuration>

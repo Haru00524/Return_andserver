@@ -37,6 +37,12 @@ public List<boardLIstDTO> mainList(String main_user_id) throws Exception {
 	// TODO Auto-generated method stub
 	return sqlSession.selectList(namespace+".share_Log_main_List", main_user_id);
 }
+
+@Override
+public void boardLike(boardDTO board) throws Exception {
+	// TODO Auto-generated method stub
+	sqlSession.insert(namespace+".likeInsert", board);
+}
 	
 	
 

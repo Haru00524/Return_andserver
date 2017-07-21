@@ -37,6 +37,12 @@ public class LisetViewServiceImpl implements ListViewService {
 		// TODO Auto-generated method stub
 		return dao.mainList(user_id);
 	}
+
+	@Override
+	public void boardLike(boardDTO board) throws Exception {
+		// TODO Auto-generated method stub
+		dao.boardLike(board);
+	}
 	
 	
 

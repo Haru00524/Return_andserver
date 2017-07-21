@@ -16,6 +16,7 @@ public class boardDTO {
 	private int step_log_code;
 	private int randomViewY;
 	private int write_type;
+	private int place_in;
 	
 	public int getBoard_code() {
 		return board_code;
@@ -95,6 +96,12 @@ public class boardDTO {
 	}
 	public void setWrite_type(int write_type) {
 		this.write_type = write_type;
+	}
+	public int getPlace_in() {
+		return place_in;
+	}
+	public void setPlace_in(int place_in) {
+		this.place_in = place_in;
 	}
 	
 }

@@ -89,4 +89,18 @@ public class MainViewController {
 		String data =  gson.toJson(search);
 		return new ResponseEntity<String>(data, resHeaders, HttpStatus.CREATED);	    
 	}
+	
+	@RequestMapping("like")
+	public void boardLike(String user_id, String board_code) throws Exception{
+		boardDTO board = new boardDTO();
+		board.setBoard_code(Integer.parseInt(board_code));
+		board.setUser_id(user_id);
+		
+		service.boardLike(board);
+	}
+	
+	@RequestMapping("writeComment")
+	public void boardComment() throws Exception{
+		
+	}
 }

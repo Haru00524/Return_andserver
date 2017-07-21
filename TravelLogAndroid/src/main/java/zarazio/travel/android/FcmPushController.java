@@ -6,83 +6,79 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.inject.Inject;
 
 import org.json.simple.JSONObject;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import zarazio.travel.android.bean.QnaBean;
 import zarazio.travel.android.bean.boardDTO;
 import zarazio.travel.android.bean.myPlaceDTO;
 import zarazio.travel.android.service.QNAService;
+import zarazio.travel.android.util.TimeTasks;
+import zarazio.travel.android.util.TwitterTextAnalysis;
 
 @Controller
 public class FcmPushController {
-	public final static String AUTH_KEY_FCM = "AAAA38W0sqQ:APA91bERMrpDlZlVLMxJWbrf1u2Q5Mm7QIRbQC942UD2sIBBavbgwyre0xozWYyR1AMe_R8Xqsm09jKWI6MRgPMpAZ49jmwsGVb0faUubr1M_gOJDyLpM9oQa-XBH2UpSiZ_uzcH3YmE";
-	public final static String API_URL_FCM = "https://fcm.googleapis.com/fcm/send";
-	
+
+	String qnaText;
 	@Inject
-	private static QNAService service;
-	
+	public QNAService service;
+
 	@RequestMapping("push_alram")
-	@ResponseBody
-	public static void pushFCMNotification(String userDeviceIdKey, String longitude, String latitude) throws Exception {
-		String authKey = AUTH_KEY_FCM; // You FCM AUTH key
-		String FMCurl = API_URL_FCM;
+	public ResponseEntity<String> pushFCMNotification(String userDeviceIdKey, String longitude, String latitude, String user_id)
+			throws Exception {
+		
+		HttpHeaders resHeaders = new HttpHeaders();
+		resHeaders.add("Content-Type", "application/json;charset=UTF-8");
+		
 		myPlaceDTO place = new myPlaceDTO();
 		place.setLatitude(Double.parseDouble(latitude));
 		place.setLongitude(Double.parseDouble(longitude));
+		place.setUser_id(user_id);
 		int board_code = 0;
 		board_code = service.boardserch(place);
-		if(board_code == -1){
+		System.out.println(board_code);
+		/*for(Object object : log_text) {
+		    String element = (String) object;
+		    System.out.println(element);
+		}*/
+		if (board_code == -1) {
+			service.placeOff(user_id);
 			System.out.println("아무것도 없음");
-		}else{
-			System.out.println(board_code);
+			return new ResponseEntity<String>("없음",resHeaders,HttpStatus.CREATED);
+		} else {
+			boardDTO board = service.placeIn(board_code);
+			System.out.println(board.getPlace_in());
+			if (board.getPlace_in() == 0) {
+				service.placeOn(board_code);
+				TwitterTextAnalysis twitter = new TwitterTextAnalysis();
+				List<String> log_text = twitter.TextAnalysis(board.getBoard_content());
+				
+				List<String> qna = service.selectQNA(log_text);
+			
+				int random = (int) (Math.random() * qna.size()); 
+
+				System.out.println(qna.get(random).toString());
+				qnaText = qna.get(random).toString();
+				Timer t = new Timer(true);
+
+				TimerTask task1 = new TimeTasks(userDeviceIdKey);
+
+
+				t.schedule(task1, 3000);
+			}
 		}
-		/*URL url = new URL(FMCurl);
-		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-		conn.setUseCaches(false);
-		conn.setDoInput(true);
-		conn.setDoOutput(true);
-		conn.setRequestMethod("POST");
-		conn.setRequestProperty("Authorization", "key=" + authKey);
-		conn.setRequestProperty("Content-Type", "application/json");
-
-		JSONObject json = new JSONObject();
-		JSONObject info = new JSONObject();
-
-		info.put("body", "푸쉬 발송 테스트 입니다."); // Notification body
-
-		json.put("notification", info);
-		json.put("to", userDeviceIdKey.trim()); // deviceID
-
-		try (OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream())) {
-			// 혹시나 한글 깨짐이 발생하면
-			// try(OutputStreamWriter wr = new
-			// OutputStreamWriter(conn.getOutputStream(), "UTF-8")){ 인코딩을 변경해준다.
-
-			wr.write(json.toString());
-			wr.flush();
-		} catch (Exception e) {
-		}
-
-		if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
-			throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
-		}
-
-		BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
-
-		String output;
-		System.out.println("Output from Server .... \n");
-		while ((output = br.readLine()) != null) {
-			System.out.println(output);
-		}
-
-		conn.disconnect();*/
+		return new ResponseEntity<String>(qnaText,resHeaders,HttpStatus.CREATED);
+		
 	}
 
-	
 }
