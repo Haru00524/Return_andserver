@@ -14,9 +14,11 @@ public class boardDTO {
 	private String user_id;
 	private int place_score;
 	private int step_log_code;
+	private int reply_code;
 	private int randomViewY;
 	private int write_type;
 	private int place_in;
+	private String user_profile;
 	
 	public int getBoard_code() {
 		return board_code;
@@ -103,5 +105,18 @@ public class boardDTO {
 	public void setPlace_in(int place_in) {
 		this.place_in = place_in;
 	}
+	public int getReply_code() {
+		return reply_code;
+	}
+	public void setReply_code(int reply_code) {
+		this.reply_code = reply_code;
+	}
+	public String getUser_profile() {
+		return user_profile;
+	}
+	public void setUser_profile(String user_profile) {
+		this.user_profile = user_profile;
+	}
+	
 	
 }

@@ -26,7 +26,7 @@ public class MemberDAOImpl implements MemberDAO{
 
 
 	@Override
-	public int loginCheck(Member member) throws Exception {
+	public Member loginCheck(Member member) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace + ".loginCheck", member);
 	}

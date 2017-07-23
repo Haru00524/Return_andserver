@@ -11,8 +11,8 @@
   		select count(*) from user_info where user_id=#{user_id}
   	</select>
   	
-  	<select id="loginCheck" resultType="int">
-  		select count(*) from user_info where user_id=#{user_id} and user_pass=#{user_pass}
+  	<select id="loginCheck" resultType="Member">
+  		select * from user_info where user_id=#{user_id} and user_pass=#{user_pass}
   	</select>
   	
   	<select id="idfind" resultType="String">

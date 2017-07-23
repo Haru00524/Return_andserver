@@ -43,6 +43,66 @@ public class LisetViewServiceImpl implements ListViewService {
 		// TODO Auto-generated method stub
 		dao.boardLike(board);
 	}
+
+	@Override
+	public void commentWrite(boardDTO board) throws Exception {
+		// TODO Auto-generated method stub
+		dao.commentWrite(board);
+	}
+
+	@Override
+	public int liketure(boardDTO board) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.liketure(board);
+	}
+
+	@Override
+	public void likedelete(boardDTO board) throws Exception {
+		// TODO Auto-generated method stub
+		dao.likedelete(board);
+	}
+
+	@Override
+	public List<boardDTO> replyList(String reply_code) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.replyList(reply_code);
+	}
+
+	@Override
+	public void deleteLog(boardDTO board) throws Exception {
+		// TODO Auto-generated method stub
+		dao.deleteLog(board);
+	}
+
+	@Override
+	public void updateLog(boardDTO board) throws Exception {
+		// TODO Auto-generated method stub
+		dao.updateLog(board);
+	}
+
+	@Override
+	public void deleteHashFile(boardDTO board) throws Exception {
+		// TODO Auto-generated method stub
+		dao.deleteHashFile(board);
+	}
+
+	@Override
+	public List<hashTagDTO> hashTagSel(int board_code) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.hashTagSel(board_code);
+	}
+
+	@Override
+	public List<boardLIstDTO> myLogs(String user_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.myLogs(user_id);
+	}
+
+	@Override
+	public String countProfile(String user_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.countProfile(user_id);
+	}
 	
 	
 

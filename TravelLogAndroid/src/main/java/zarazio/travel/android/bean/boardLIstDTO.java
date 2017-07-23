@@ -18,6 +18,9 @@ public class boardLIstDTO {
 	private String file_type;
 	private String file_content;
 	private int write_type;
+	private int reply_code;
+	private int place_in;
+	private String user_profile;
 	
 	public int getBoard_code() {
 		return board_code;
@@ -108,6 +111,24 @@ public class boardLIstDTO {
 	}
 	public void setWrite_type(int write_type) {
 		this.write_type = write_type;
+	}
+	public int getReply_code() {
+		return reply_code;
+	}
+	public void setReply_code(int reply_code) {
+		this.reply_code = reply_code;
+	}
+	public int getPlace_in() {
+		return place_in;
+	}
+	public void setPlace_in(int place_in) {
+		this.place_in = place_in;
+	}
+	public String getUser_profile() {
+		return user_profile;
+	}
+	public void setUser_profile(String user_profile) {
+		this.user_profile = user_profile;
 	}
 	
 	

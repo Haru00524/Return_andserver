@@ -58,4 +58,5 @@ public class QNADAOImpl implements QNADAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace+".selectQnaDefault");
 	}
+
 }

@@ -21,7 +21,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public int loginCheck(Member member) throws Exception {
+	public Member loginCheck(Member member) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.loginCheck(member);
 	}

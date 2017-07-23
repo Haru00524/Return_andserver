@@ -16,6 +16,4 @@ public class hashTagDTO {
 		this.board_code = board_code;
 	}
     
-	
-	
 }

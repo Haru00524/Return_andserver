@@ -4,18 +4,15 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	<settings>
-		<setting name="jdbcTypeForNull" value="NULL" />
-	</settings>
 	<typeAliases>
 		<typeAlias alias="ARDataInfo" type="zarazio.travel.android.bean.ARDataInfo" />
 		<typeAlias alias="Member" type="zarazio.travel.android.bean.Member" />
 		<typeAlias alias="boardDTO" type="zarazio.travel.android.bean.boardDTO" />
 		<typeAlias alias="boardLIstDTO" type="zarazio.travel.android.bean.boardLIstDTO" />
-		<typeAlias alias="addachedFileDTO"
-			type="zarazio.travel.android.bean.attachedFileDTO" />
+		<typeAlias alias="addachedFileDTO" type="zarazio.travel.android.bean.attachedFileDTO" />
 		<typeAlias alias="steplogDTO" type="zarazio.travel.android.bean.StepLogDTO" />
 		<typeAlias alias="TravelStory" type="zarazio.travel.android.bean.TravelStory" />
 		<typeAlias alias="QnaBean" type="zarazio.travel.android.bean.QnaBean" />
+		<typeAlias alias="hashTagDTO" type="zarazio.travel.android.bean.hashTagDTO" />
 	</typeAliases>
 </configuration>
