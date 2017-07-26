@@ -103,6 +103,12 @@ public class LisetViewServiceImpl implements ListViewService {
 		// TODO Auto-generated method stub
 		return dao.countProfile(user_id);
 	}
+
+	@Override
+	public List<boardLIstDTO> MyLikeboard(String user_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.MyLikeboard(user_id);
+	}
 	
 	
 

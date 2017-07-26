@@ -21,4 +21,5 @@ public interface ListViewDAO {
 	public void updateLog(boardDTO board) throws Exception;
 	public void deleteHashFile(boardDTO board)throws Exception;
 	public List<hashTagDTO> hashTagSel(int board_code) throws Exception;
+	public List<boardLIstDTO> MyLikeboard(String user_id) throws Exception;
 }

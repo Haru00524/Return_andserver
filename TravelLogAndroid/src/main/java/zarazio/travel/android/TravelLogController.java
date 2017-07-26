@@ -99,6 +99,7 @@ public class TravelLogController {
 		HttpHeaders resHeaders = new HttpHeaders();
 		resHeaders.add("Content-Type", "application/json;charset=EUC_KR");
 		
+		
 		int board_Type_Code = 0 ;
 		int share_Type = 0;
 		String board_Title = null;
@@ -221,7 +222,7 @@ public class TravelLogController {
         
         attachedFileDTO file = new attachedFileDTO();
         file.setBoard_code(maxboardCode);
-        file.setFile_content(originalName);
+        file.setFile_content("/s_"+originalName);
         file.setFile_type(file_Type);
         
         try {

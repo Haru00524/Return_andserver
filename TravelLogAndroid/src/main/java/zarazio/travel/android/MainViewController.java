@@ -121,6 +121,22 @@ public class MainViewController {
 		System.out.println(data);
 		return new ResponseEntity<String>(data, resHeaders, HttpStatus.CREATED);
 	}
+	@RequestMapping("myLikeBoard")
+	@ResponseBody
+	public ResponseEntity<String> myLikeBoard(String user_id) throws Exception {
+
+		HttpHeaders resHeaders = new HttpHeaders();
+		resHeaders.add("Content-Type", "application/json;charset=UTF-8");
+
+		List<boardLIstDTO> search = service.MyLikeboard(user_id);
+
+		Gson gson = new Gson();
+
+		String data = gson.toJson(search);
+		System.out.println(data);
+		return new ResponseEntity<String>(data, resHeaders, HttpStatus.CREATED);
+	}
+	
 	@RequestMapping("mypageCount")
 	@ResponseBody
 	public ResponseEntity<String> mypageCount(String user_id) throws Exception {
@@ -349,7 +365,7 @@ public class MainViewController {
 
 		attachedFileDTO file = new attachedFileDTO();
 		file.setBoard_code(Integer.parseInt(board_code));
-		file.setFile_content(originalName);
+		file.setFile_content("/s_"+originalName);
 		file.setFile_type(file_Type);
 
 		try {

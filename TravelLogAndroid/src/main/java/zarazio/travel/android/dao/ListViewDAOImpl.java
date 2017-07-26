@@ -112,4 +112,10 @@ public class ListViewDAOImpl implements ListViewDAO {
 		String result = boardC +"," + friendC;
 		return result;
 	}
+
+	@Override
+	public List<boardLIstDTO> MyLikeboard(String user_id) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+".MyLikeBoard", user_id);
+	}
 }

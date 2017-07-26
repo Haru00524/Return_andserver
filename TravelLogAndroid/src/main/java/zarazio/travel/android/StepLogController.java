@@ -70,7 +70,7 @@ public class StepLogController {
 	@ResponseBody
 	public String codeSelect(String user_id) throws Exception {
 		
-		
+		System.out.println("dd");
 		return service.stepCodeSelect(user_id)+"";
 		
 	}
@@ -157,8 +157,8 @@ public class StepLogController {
 	                if(fileName.equals("null")) continue;
 	                // 전송된 파일을 서버에 저장하기 위한 절차
 	                //String rootPath = getServletContext().getRealPath("/");
-	                originalName = System.currentTimeMillis()+"Travel_log_";
-	                File savedFile = new File("C:/Returns/src/main/webapp/resources/upload/logs/"+ originalName+fileName);
+	                originalName = System.currentTimeMillis()+"Travel_log_"+fileName;
+	                File savedFile = new File("C:/Returns/src/main/webapp/resources/upload/step_Log/"+ originalName);
 
 	                item.write(savedFile);// 지정 경로에 파일을 저장함
 	                System.out.println("<tr><td><b>파일저장 경로:</b></td></tr><tr><td><b>"+savedFile+"</td></tr>");

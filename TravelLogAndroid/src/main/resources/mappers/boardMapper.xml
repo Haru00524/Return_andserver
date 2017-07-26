@@ -26,7 +26,7 @@
 		select max(board_code)
 		from board;
 	</select>
-	<select id="share_Log_List" resultType="boardDTO">
+	<select id="share_Log_List" resultType="boardLIstDTO">
 		select a.*,
 		c.user_profile
 		from board a, user_info c
@@ -92,7 +92,7 @@
 		ORDER BY board_date
 		DESC;
 	</select>
-	<select id="share_Log_hash_List" resultType="boardDTO">
+	<select id="share_Log_hash_List" resultType="boardLIstDTO">
 		SELECT a.*,
 		c.user_profile
 		FROM board a, hash_tag b, user_info c
@@ -107,7 +107,7 @@
 		group by board_code
 		ORDER BY board_date DESC;
 	</select>
-	<select id="share_Log_like_List" resultType="boardDTO">
+	<select id="share_Log_like_List" resultType="boardLIstDTO">
 		select *,
 		c.user_profile
 		from board, user_info c
@@ -120,7 +120,7 @@
 		ORDER
 		BY like DESC;
 	</select>
-	<select id="share_Log_Like_hash_List" resultType="boardDTO">
+	<select id="share_Log_Like_hash_List" resultType="boardLIstDTO">
 		SELECT a.*,
 		c.user_profile
 		FROM board a,hash_tag b, user_info c
@@ -193,18 +193,15 @@
 		from hash_tag
 		where board_code = #{board_code}
 	</select>
-	<select id="myLogs" resultType="boardDTO">
+	<select id="myLogs" resultType="boardLIstDTO">
 		select distinct a.*, b.file_type,
 		b.file_content
-		from friend_list d, board a
-		LEFT OUTER JOIN attached_file
-		b
+		from board a
+		LEFT OUTER JOIN attached_file b
 		ON a.board_Code = b.board_Code
-		where(a.board_type_code between 1 and
-		3) and
-		a.share_type = 1 and a.user_id = #{user_id} and
-		(step_log_code =
-		0 or board_type_code =3)
+		where(a.board_type_code between 1 and 3) and
+		(a.share_type between 1 and 3) and a.user_id = #{user_id} and
+		(step_log_code = 0 or board_type_code =3)
 		group by board_code
 		ORDER BY board_date DESC;
 	</select>
@@ -215,7 +212,15 @@
 	</select>
 	<select id="friend_count" resultType="int">
 		select count(*)
-		from friend_list
+		from
+		friend_list
 		where (user_id = #{user_id} or friend_id = #{user_id})
+	</select>
+	<select id="MyLikeBoard" resultType="boardLIstDTO">
+		SELECT a.*, c.file_type, c.file_content
+		FROM  board_like b ,board a 
+        LEFT OUTER JOIN attached_file c
+        ON a.board_code = c.board_code
+		where a.board_code = b.board_code and b.user_id = #{user_id}
 	</select>
 </mapper>

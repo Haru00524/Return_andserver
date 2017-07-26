@@ -21,4 +21,5 @@ public interface ListViewService {
 	public List<hashTagDTO> hashTagSel(int board_code) throws Exception;
 	public List<boardLIstDTO> myLogs(String user_id)throws Exception;
 	public String countProfile(String user_id)throws Exception;
+	public List<boardLIstDTO> MyLikeboard(String user_id) throws Exception;
 }
