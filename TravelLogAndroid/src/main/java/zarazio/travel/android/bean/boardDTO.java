@@ -19,6 +19,7 @@ public class boardDTO {
 	private int write_type;
 	private int place_in;
 	private String user_profile;
+	private int qna_in_test;
 	
 	public int getBoard_code() {
 		return board_code;
@@ -116,6 +117,12 @@ public class boardDTO {
 	}
 	public void setUser_profile(String user_profile) {
 		this.user_profile = user_profile;
+	}
+	public int getQna_in_test() {
+		return qna_in_test;
+	}
+	public void setQna_in_test(int qna_in_test) {
+		this.qna_in_test = qna_in_test;
 	}
 	
 	

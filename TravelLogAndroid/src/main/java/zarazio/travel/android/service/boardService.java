@@ -4,6 +4,7 @@ import java.util.List;
 
 import zarazio.travel.android.bean.attachedFileDTO;
 import zarazio.travel.android.bean.boardDTO;
+import zarazio.travel.android.bean.boardLIstDTO;
 import zarazio.travel.android.bean.hashTagDTO;
 
 public interface boardService {
@@ -14,4 +15,5 @@ public interface boardService {
 	public List<boardDTO> boardList()throws Exception;
 	public List<boardDTO> boardList(String Hash)throws Exception;
 	public List<attachedFileDTO> selPicture(int board_code)throws Exception;
+	public boardLIstDTO pushBoard(int board_code) throws Exception;
 }

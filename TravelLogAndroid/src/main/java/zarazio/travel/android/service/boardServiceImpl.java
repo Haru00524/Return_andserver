@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import zarazio.travel.android.bean.attachedFileDTO;
 import zarazio.travel.android.bean.boardDTO;
+import zarazio.travel.android.bean.boardLIstDTO;
 import zarazio.travel.android.bean.hashTagDTO;
 import zarazio.travel.android.dao.boardDAO;
 
@@ -62,6 +63,12 @@ public class boardServiceImpl implements boardService {
 	public List<boardDTO> boardList(String Hash) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.boardHashList(Hash);
+	}
+
+	@Override
+	public boardLIstDTO pushBoard(int board_code) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.pushBoard(board_code);
 	}
 
 }

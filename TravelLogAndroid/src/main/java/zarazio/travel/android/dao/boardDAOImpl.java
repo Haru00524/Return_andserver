@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import zarazio.travel.android.bean.attachedFileDTO;
 import zarazio.travel.android.bean.boardDTO;
+import zarazio.travel.android.bean.boardLIstDTO;
 import zarazio.travel.android.bean.hashTagDTO;
 
 @Repository 
@@ -66,6 +67,12 @@ public static final String namespace = "travel.android.boardMapper" ;
 		// TODO Auto-generated method stub
 		System.out.println(hash_tag);
 		return sqlSession.selectList(namespace+".share_Log_hash_List", hash_tag);
+	}
+
+	@Override
+	public boardLIstDTO pushBoard(int board_code) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+".pushBoard", board_code);
 	}
 
 	

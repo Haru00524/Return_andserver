@@ -30,6 +30,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
@@ -37,6 +38,7 @@ import com.google.gson.Gson;
 import zarazio.travel.android.bean.ARFilterDTo;
 import zarazio.travel.android.bean.attachedFileDTO;
 import zarazio.travel.android.bean.boardDTO;
+import zarazio.travel.android.bean.boardLIstDTO;
 import zarazio.travel.android.bean.hashTagDTO;
 import zarazio.travel.android.service.ARDataService;
 import zarazio.travel.android.service.StepService;
@@ -50,6 +52,28 @@ public class TravelLogController {
 
 	@Inject
 	private boardService service;
+	
+	@RequestMapping(value = "selectBoard")
+	public ResponseEntity<String> mainViewDB(@RequestParam("board_code") String board_code) throws Exception {
+		HttpHeaders resHeaders = new HttpHeaders();
+		resHeaders.add("Content-Type", "application/json;charset=UTF-8");
+
+		boardLIstDTO pushDB = service.pushBoard(Integer.parseInt(board_code));
+		Gson gson = new Gson();
+		String data = gson.toJson(pushDB);
+
+		System.out.println(data);
+		if(pushDB.getFile_type() == null){
+			pushDB.setFile_type("0");
+			pushDB.setFile_content("0");
+		}
+		gson = new Gson();
+		data = gson.toJson(pushDB);
+
+		System.out.println(data);
+		return new ResponseEntity<String>(data, resHeaders, HttpStatus.CREATED);
+
+	}
 	
 	@RequestMapping(value="/boardList")
 	public ResponseEntity<String> ARDataList(ARFilterDTo arFilter) throws Exception {
@@ -112,6 +136,7 @@ public class TravelLogController {
 		int file_Type=0;
 		int step_code = 0;
 		int write_type= 1;
+		int puahalram = 0;
 		
 		HttpStatus a=HttpStatus.BAD_REQUEST;
 		
@@ -165,6 +190,9 @@ public class TravelLogController {
 		      }else if(item!=null && item.getFieldName().equals("step_log")) {
 		          step_code = Integer.parseInt(item.getString("EUC_KR"));
 		          System.out.println("step_Log_Code:"+step_code+"<br>");
+		      }else if(item!=null && item.getFieldName().equals("puahalram")) {
+		    	  puahalram = Integer.parseInt(item.getString("EUC_KR"));
+		          System.out.println("step_Log_Code:"+step_code+"<br>");
 		      }
 	        }
 	        else{ // 폼 필드가 아니고 파일인 경우
@@ -215,6 +243,7 @@ public class TravelLogController {
         board.setRandomViewY(randomViewY);
         board.setStep_log_code(step_code);
         board.setWrite_type(write_type);
+        board.setQna_in_test(puahalram);
 	    
         hashTagDTO hash = new hashTagDTO();
         hash.setBoard_code(maxboardCode);

@@ -8,10 +8,10 @@
 		board_content, log_longtitude,
 		log_latitude, share_type,
 		board_type_code, user_id, randomViewY,
-		step_log_code, write_type)
+		step_log_code, write_type, qna_in_test)
 		values (#{board_code},
 		#{board_title},#{board_content},#{log_longtitude},#{log_latitude},#{share_type},#{board_type_code},#{user_id},
-		#{randomViewY}, #{step_log_code}, #{write_type})
+		#{randomViewY}, #{step_log_code}, #{write_type}, #{qna_in_test})
 	</insert>
 	<insert id="hash_Tag_insert">
 		insert into hash_tag(board_code, hash_tag_content)
@@ -222,5 +222,12 @@
         LEFT OUTER JOIN attached_file c
         ON a.board_code = c.board_code
 		where a.board_code = b.board_code and b.user_id = #{user_id}
+	</select>
+	<select id="pushBoard" resultType="boardLIstDTO">
+		SELECT a.*, c.file_type, c.file_content
+		FROM board a 
+        LEFT OUTER JOIN attached_file c
+        ON a.board_code = c.board_code 
+        where a.board_code = #{board_code}
 	</select>
 </mapper>
