@@ -35,12 +35,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-import zarazio.travel.android.bean.ARDataInfo;
 import zarazio.travel.android.bean.attachedFileDTO;
 import zarazio.travel.android.bean.boardDTO;
 import zarazio.travel.android.bean.boardLIstDTO;
 import zarazio.travel.android.bean.hashTagDTO;
-import zarazio.travel.android.service.ARDataService;
 import zarazio.travel.android.service.ListViewService;
 import zarazio.travel.android.service.StepService;
 import zarazio.travel.android.service.boardService;

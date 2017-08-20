@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
@@ -36,11 +37,12 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.Gson;
 
 import zarazio.travel.android.bean.ARFilterDTo;
+import zarazio.travel.android.bean.TravelPlace;
 import zarazio.travel.android.bean.attachedFileDTO;
 import zarazio.travel.android.bean.boardDTO;
 import zarazio.travel.android.bean.boardLIstDTO;
 import zarazio.travel.android.bean.hashTagDTO;
-import zarazio.travel.android.service.ARDataService;
+import zarazio.travel.android.bean.selectTravel;
 import zarazio.travel.android.service.StepService;
 import zarazio.travel.android.service.boardService;
 
@@ -75,6 +77,51 @@ public class TravelLogController {
 
 	}
 	
+	@RequestMapping(value="/search_travel")
+	public ResponseEntity<String> searchtravel(String user_id) throws Exception {
+		HttpHeaders resHeaders = new HttpHeaders();
+		resHeaders.add("Content-Type", "application/json;charset=UTF-8");
+		 List<selectTravel> result = null;
+		 String board = "0";
+			try {
+				result = service.Travel(user_id);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		    
+			Date now = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+
+			String nowdate = sdf.format(now);
+			for(int i = 0; i < result.size(); i++){
+				String begin = result.get(i).getStart_Date();
+				String end = result.get(i).getEnd_Date();
+				begin = begin.replaceAll("-", "");
+				end = end.replaceAll("-", "");
+				Date beginDate = null;
+			    Date endDate = null;
+			    Date nowD = null;
+				try {
+					beginDate = sdf.parse(begin);
+					endDate = sdf.parse(end);
+					nowD = sdf.parse(nowdate);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			    long diff1 = endDate.getTime() - nowD.getTime();
+			    long diff2 = nowD.getTime() - beginDate.getTime();
+			    long startDays = diff1 / (24 * 60 * 60 * 1000);
+			    long endDays = diff2 / (24 * 60 * 60 * 1000);
+			    
+			    if(startDays == 0 || endDays==0){
+			    	board = "1";
+			    }
+			}
+			return new ResponseEntity<String>(board, resHeaders, HttpStatus.CREATED);
+	}
+	
 	@RequestMapping(value="/boardList")
 	public ResponseEntity<String> ARDataList(ARFilterDTo arFilter) throws Exception {
 		HttpHeaders resHeaders = new HttpHeaders();
@@ -94,6 +141,7 @@ public class TravelLogController {
 		Gson gson = new Gson();
 		String data =  gson.toJson(List);
 
+		System.out.println(data);
 		return new ResponseEntity<String>(data,resHeaders,HttpStatus.CREATED);
 		
 	}
@@ -220,6 +268,45 @@ public class TravelLogController {
 	        }
 	    }
 
+	    List<selectTravel> result = null;
+		try {
+			result = service.Travel(user_id);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	    
+		Date now = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+
+		String nowdate = sdf.format(now);
+		for(int i = 0; i < result.size(); i++){
+			String begin = result.get(i).getStart_Date();
+			String end = result.get(i).getEnd_Date();
+			begin = begin.replaceAll("-", "");
+			end = end.replaceAll("-", "");
+			Date beginDate = null;
+		    Date endDate = null;
+		    Date nowD = null;
+			try {
+				beginDate = sdf.parse(begin);
+				endDate = sdf.parse(end);
+				nowD = sdf.parse(nowdate);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    long diff1 = endDate.getTime() - nowD.getTime();
+		    long diff2 = nowD.getTime() - beginDate.getTime();
+		    long startDays = diff1 / (24 * 60 * 60 * 1000);
+		    long endDays = diff2 / (24 * 60 * 60 * 1000);
+		    
+		    if(startDays == 0 || endDays==0){
+		    	board_Type_Code = 2;
+		    }
+		}
+		
+		
 	    int maxboardCode= 0;
 		try {
 			maxboardCode = (service.maxboard_Code()+1);

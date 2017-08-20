@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import zarazio.travel.android.bean.Friend;
 import zarazio.travel.android.bean.Member;
 
 
@@ -93,6 +94,36 @@ public class MemberDAOImpl implements MemberDAO{
 	public void user_updateBasic(Member member) throws Exception {
 		// TODO Auto-generated method stub
 		sqlSession.update(namespace+".profile_update_basic", member);
+	}
+
+
+	@Override
+	public void friendADD(Friend friend) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.insert(namespace+".friendAdd",friend);
+	}
+
+
+	@Override
+	public Friend friendState(Friend friend) throws Exception {
+		// TODO Auto-generated method stub
+		Friend result = new Friend();
+		result = sqlSession.selectOne(namespace+".friend", friend);
+		return result;
+	}
+
+
+	@Override
+	public void friendDelete(Friend friend) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.delete(namespace+".friendDelete", friend);
+	}
+
+
+	@Override
+	public void friendUpdate(Friend friend) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace+".friendUpdate", friend);
 	}
 
 	

@@ -11,6 +11,7 @@ import zarazio.travel.android.bean.attachedFileDTO;
 import zarazio.travel.android.bean.boardDTO;
 import zarazio.travel.android.bean.boardLIstDTO;
 import zarazio.travel.android.bean.hashTagDTO;
+import zarazio.travel.android.bean.selectTravel;
 
 @Repository 
 public class boardDAOImpl implements boardDAO {
@@ -73,6 +74,12 @@ public static final String namespace = "travel.android.boardMapper" ;
 	public boardLIstDTO pushBoard(int board_code) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace+".pushBoard", board_code);
+	}
+
+	@Override
+	public List<selectTravel> Travel(String user_id) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+".selectboard", user_id);
 	}
 
 	

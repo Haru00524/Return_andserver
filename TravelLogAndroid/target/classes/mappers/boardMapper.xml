@@ -8,7 +8,8 @@
 		board_content, log_longtitude,
 		log_latitude, share_type,
 		board_type_code, user_id, randomViewY,
-		step_log_code, write_type, qna_in_test)
+		step_log_code, write_type,
+		qna_in_test)
 		values (#{board_code},
 		#{board_title},#{board_content},#{log_longtitude},#{log_latitude},#{share_type},#{board_type_code},#{user_id},
 		#{randomViewY}, #{step_log_code}, #{write_type}, #{qna_in_test})
@@ -31,7 +32,7 @@
 		c.user_profile
 		from board a, user_info c
 		where share_type = 1 and
-		(board_type_code between 1 and 3) and
+		(a.board_type_code = 1 or a.board_type_code = 3) and
 		step_log_code = 0
 		and a.user_id =
 		c.user_id
@@ -49,14 +50,20 @@
 		where (d.user_id = #{main_user_id} or d.friend_id =
 		#{main_user_id}) and
 		(a.user_id = d.user_id or a.user_id = d.friend_id)
-		and (a.board_type_code between 1 and 3) and
-		a.share_type = 1 and
-		a.user_id != #{main_user_id} and d.friend_accept =1 and
+		and
+		(a.board_type_code = 1 or a.board_type_code = 3) and
+		a.share_type =
+		1 and
+		a.user_id !=
+		#{main_user_id} and d.friend_accept =1 and
 		(step_log_code
-		= 0 or board_type_code =3)
+		= 0 or
+		board_type_code =3)
 		and a.user_id = c.user_id
-		group by board_code
-		ORDER BY board_date DESC;
+		group
+		by board_code
+		ORDER
+		BY board_date DESC;
 	</select>
 	<select id="share_Log_all_List" resultType="boardLIstDTO">
 		select a.*,
@@ -66,8 +73,9 @@
 		ON a.board_code = b.board_code
 		where
 		a.share_type = 1 and (step_log_code = 0 or board_type_code =3) and
-		(a.board_type_code between 1 and 3)
-		and a.user_id = c.user_id
+		(a.board_type_code = 1 or a.board_type_code = 3)
+		and a.user_id =
+		c.user_id
 		group by
 		board_code
 		ORDER BY board_date DESC;
@@ -82,14 +90,17 @@
 		ON a.board_code =
 		b.board_code
 		where a.share_type = 1 and c.board_code = a.board_code and
-		(a.board_type_code between 1 and 3)
-		and c.hash_tag_content LIKE
+		(a.board_type_code = 1 or a.board_type_code = 3)
+		and c.hash_tag_content
+		LIKE
 		CONCAT('%',#{hash_tag},'%') and
-		(step_log_code = 0 or board_type_code
+		(step_log_code = 0 or
+		board_type_code
 		=3)
 		and a.user_id = e.user_id
 		group by board_code
-		ORDER BY board_date
+		ORDER BY
+		board_date
 		DESC;
 	</select>
 	<select id="share_Log_hash_List" resultType="boardLIstDTO">
@@ -97,14 +108,16 @@
 		c.user_profile
 		FROM board a, hash_tag b, user_info c
 		WHERE a.board_code
-		= b.board_code and (a.board_type_code between 1 and 3)
+		= b.board_code and (a.board_type_code between 1 or 3)
 		and
 		b.hash_tag_content LIKE CONCAT('%',#{hash_tag},'%') and
 		a.share_type =
-		1 and (step_log_code = 0 or board_type_code =3)
+		1 and
+		(a.board_type_code = 1 or a.board_type_code = 3)
 		and a.user_id =
 		c.user_id
-		group by board_code
+		group by
+		board_code
 		ORDER BY board_date DESC;
 	</select>
 	<select id="share_Log_like_List" resultType="boardLIstDTO">
@@ -112,8 +125,9 @@
 		c.user_profile
 		from board, user_info c
 		where share_type = 1 and
-		(a.board_type_code between 1 and 3)
-		and (step_log_code = 0 or
+		(a.board_type_code = 1 or a.board_type_code = 3)
+		and (step_log_code = 0
+		or
 		board_type_code =3)
 		and a.user_id = c.user_id
 		group by board_code
@@ -125,11 +139,14 @@
 		c.user_profile
 		FROM board a,hash_tag b, user_info c
 		WHERE a.board_code =
-		b.board_code and (a.board_type_code between 1 and 3)
+		b.board_code and
+		(a.board_type_code = 1 or a.board_type_code = 3)
 		and
-		b.hash_tag_content LIKE CONCAT('%',#{hash_tag},'%') and
+		b.hash_tag_content LIKE
+		CONCAT('%',#{hash_tag},'%') and
 		a.share_type =1
-		and (step_log_code = 0 or board_type_code =3)
+		and (step_log_code = 0
+		or board_type_code =3)
 		and a.user_id = c.user_id
 		group by board_code
 		ORDER BY like DESC;
@@ -198,11 +215,15 @@
 		b.file_content
 		from board a
 		LEFT OUTER JOIN attached_file b
-		ON a.board_Code = b.board_Code
-		where(a.board_type_code between 1 and 3) and
-		(a.share_type between 1 and 3) and a.user_id = #{user_id} and
+		ON
+		a.board_Code = b.board_Code
+		where(a.board_type_code between 1 and 3)
+		and
+		(a.board_type_code = 1 or a.board_type_code = 3) and a.user_id =
+		#{user_id} and
 		(step_log_code = 0 or board_type_code =3)
-		group by board_code
+		group by
+		board_code
 		ORDER BY board_date DESC;
 	</select>
 	<select id="board_count" resultType="int">
@@ -217,17 +238,28 @@
 		where (user_id = #{user_id} or friend_id = #{user_id})
 	</select>
 	<select id="MyLikeBoard" resultType="boardLIstDTO">
-		SELECT a.*, c.file_type, c.file_content
-		FROM  board_like b ,board a 
-        LEFT OUTER JOIN attached_file c
-        ON a.board_code = c.board_code
-		where a.board_code = b.board_code and b.user_id = #{user_id}
+		SELECT a.*, c.file_type,
+		c.file_content
+		FROM board_like b ,board a
+		LEFT OUTER JOIN attached_file
+		c
+		ON a.board_code = c.board_code
+		where a.board_code = b.board_code and
+		b.user_id = #{user_id}
 	</select>
 	<select id="pushBoard" resultType="boardLIstDTO">
-		SELECT a.*, c.file_type, c.file_content
-		FROM board a 
-        LEFT OUTER JOIN attached_file c
-        ON a.board_code = c.board_code 
-        where a.board_code = #{board_code}
+		SELECT a.*, c.file_type,
+		c.file_content
+		FROM board a
+		LEFT OUTER JOIN attached_file c
+		ON
+		a.board_code = c.board_code
+		where a.board_code = #{board_code}
 	</select>
+	<select id="selectboard" resultType="selectTravel">
+		select a.group_Code, b.start_Date, b.end_Date from group_application a,
+		travel_group b
+		where user_id = #{user_id} and a.group_Code = b.group_Code;
+	</select>
+
 </mapper>

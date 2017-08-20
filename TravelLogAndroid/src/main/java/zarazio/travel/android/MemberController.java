@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 
+import zarazio.travel.android.bean.Friend;
 import zarazio.travel.android.bean.Member;
 import zarazio.travel.android.dao.MemberDAO;
 import zarazio.travel.android.service.MemberService;
@@ -53,7 +54,42 @@ public class MemberController {
 		service.insert(member);
 
 	}
+	
+	@RequestMapping("firend")
+	public ResponseEntity<String> friendState(Friend friend) throws Exception{
+		
+		HttpHeaders resHeaders = new HttpHeaders();
+		resHeaders.add("Content-Type", "application/json;charset=EUC_KR");
 
+		System.out.println(friend.getFriend_id() +" / " + friend.getUser_id());
+		Friend result = new Friend();
+		result = service.friendState(friend);
+
+		Gson gson = new Gson();
+		String data =  gson.toJson(result);
+		System.out.println(data);
+		return new ResponseEntity<String>(data,resHeaders,HttpStatus.CREATED);
+	}
+	
+	@RequestMapping(value="/firendADD")
+	public ResponseEntity<String> friend(Friend friend) throws Exception{
+		
+		HttpHeaders resHeaders = new HttpHeaders();
+		resHeaders.add("Content-Type", "application/json;charset=EUC_KR");
+		
+		System.out.println(friend.getFriend_State());
+		if(friend.getFriend_State().equals("친구신청")){
+			service.friendADD(friend);
+		}else if(friend.getFriend_State().equals("친구하기")){
+			service.friendUpdate(friend);
+		}else if(friend.getFriend_State().equals("친구")){
+			service.friendDelete(friend);
+		}else if(friend.getFriend_State().equals("친구신청중")){
+			service.friendDelete(friend);
+		}
+		return new ResponseEntity<String>("success",resHeaders,HttpStatus.CREATED);
+	}
+	
 	@RequestMapping(value="/idCheck")
 	@ResponseBody
 	public String androidIdCheck(HttpServletRequest request, Member member) throws Exception {

@@ -5,7 +5,6 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias alias="ARDataInfo" type="zarazio.travel.android.bean.ARDataInfo" />
 		<typeAlias alias="Member" type="zarazio.travel.android.bean.Member" />
 		<typeAlias alias="boardDTO" type="zarazio.travel.android.bean.boardDTO" />
 		<typeAlias alias="boardLIstDTO" type="zarazio.travel.android.bean.boardLIstDTO" />
@@ -14,5 +13,10 @@
 		<typeAlias alias="TravelStory" type="zarazio.travel.android.bean.TravelStory" />
 		<typeAlias alias="QnaBean" type="zarazio.travel.android.bean.QnaBean" />
 		<typeAlias alias="hashTagDTO" type="zarazio.travel.android.bean.hashTagDTO" />
+		<typeAlias alias="friend" type="zarazio.travel.android.bean.Friend" />
+		<typeAlias alias="travelList" type="zarazio.travel.android.bean.TravelPlace" />
+		<typeAlias alias="Travelgorup" type="zarazio.travel.android.bean.TravelGroup" />
+		<typeAlias alias="material" type="zarazio.travel.android.bean.Material" />
+		<typeAlias alias="selectTravel" type="zarazio.travel.android.bean.selectTravel" />
 	</typeAliases>
 </configuration>

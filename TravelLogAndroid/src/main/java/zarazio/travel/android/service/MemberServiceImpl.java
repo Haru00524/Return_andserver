@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import zarazio.travel.android.bean.Friend;
 import zarazio.travel.android.bean.Member;
 import zarazio.travel.android.dao.MemberDAO;
 
@@ -68,6 +69,29 @@ public class MemberServiceImpl implements MemberService{
 	public void passUpdate(Member member) throws Exception {
 		// TODO Auto-generated method stub
 		dao.passUpdate(member);
+	}
+
+	@Override
+	public void friendADD(Friend friend) throws Exception {
+		// TODO Auto-generated method stub
+		dao.friendADD(friend);
+	}
+
+	@Override
+	public Friend friendState(Friend friend) throws Exception {
+		return dao.friendState(friend);
+	}
+
+	@Override
+	public void friendDelete(Friend friend) throws Exception {
+		// TODO Auto-generated method stub
+		dao.friendDelete(friend);
+	}
+
+	@Override
+	public void friendUpdate(Friend friend) throws Exception {
+		// TODO Auto-generated method stub
+		dao.friendUpdate(friend);
 	}
 
 }

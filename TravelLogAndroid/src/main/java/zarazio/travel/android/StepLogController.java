@@ -41,7 +41,6 @@ import zarazio.travel.android.bean.attachedFileDTO;
 import zarazio.travel.android.bean.boardDTO;
 import zarazio.travel.android.bean.boardLIstDTO;
 import zarazio.travel.android.bean.hashTagDTO;
-import zarazio.travel.android.service.ARDataService;
 import zarazio.travel.android.service.StepService;
 import zarazio.travel.android.service.boardService;
 
