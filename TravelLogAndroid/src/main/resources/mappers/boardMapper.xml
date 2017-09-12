@@ -33,7 +33,7 @@
 		from board a, user_info c
 		where share_type = 1 and
 		(a.board_type_code = 1 or a.board_type_code = 3) and
-		step_log_code = 0
+		step_log_code = 0 and a.board_title != "0"
 		and a.user_id =
 		c.user_id
 		group by board_code
@@ -58,10 +58,9 @@
 		#{main_user_id} and d.friend_accept =1 and
 		(step_log_code
 		= 0 or
-		board_type_code =3)
+		board_type_code =3) and a.board_title != "0"
 		and a.user_id = c.user_id
-		group
-		by board_code
+		group by board_code
 		ORDER
 		BY board_date DESC;
 	</select>
@@ -73,7 +72,7 @@
 		ON a.board_code = b.board_code
 		where
 		a.share_type = 1 and (step_log_code = 0 or board_type_code =3) and
-		(a.board_type_code = 1 or a.board_type_code = 3)
+		(a.board_type_code = 1 or a.board_type_code = 3) and a.board_title != "0"
 		and a.user_id =
 		c.user_id
 		group by
@@ -97,7 +96,7 @@
 		(step_log_code = 0 or
 		board_type_code
 		=3)
-		and a.user_id = e.user_id
+		and a.user_id = e.user_id and a.board_title != "0"
 		group by board_code
 		ORDER BY
 		board_date
@@ -107,15 +106,12 @@
 		SELECT a.*,
 		c.user_profile
 		FROM board a, hash_tag b, user_info c
-		WHERE a.board_code
-		= b.board_code and (a.board_type_code between 1 or 3)
-		and
+		WHERE a.board_code = b.board_code and
 		b.hash_tag_content LIKE CONCAT('%',#{hash_tag},'%') and
-		a.share_type =
-		1 and
+		a.share_type = 1 and
 		(a.board_type_code = 1 or a.board_type_code = 3)
 		and a.user_id =
-		c.user_id
+		c.user_id and a.board_title != "0"
 		group by
 		board_code
 		ORDER BY board_date DESC;
@@ -126,10 +122,8 @@
 		from board, user_info c
 		where share_type = 1 and
 		(a.board_type_code = 1 or a.board_type_code = 3)
-		and (step_log_code = 0
-		or
-		board_type_code =3)
-		and a.user_id = c.user_id
+		and (step_log_code = 0 or board_type_code =3)
+		and a.user_id = c.user_id and a.board_title != "0"
 		group by board_code
 		ORDER
 		BY like DESC;
@@ -144,7 +138,7 @@
 		and
 		b.hash_tag_content LIKE
 		CONCAT('%',#{hash_tag},'%') and
-		a.share_type =1
+		a.share_type = 1 and a.board_title != "0"
 		and (step_log_code = 0
 		or board_type_code =3)
 		and a.user_id = c.user_id
@@ -220,7 +214,7 @@
 		where(a.board_type_code between 1 and 3)
 		and
 		(a.board_type_code = 1 or a.board_type_code = 3) and a.user_id =
-		#{user_id} and
+		#{user_id} and a.board_title != '0' and
 		(step_log_code = 0 or board_type_code =3)
 		group by
 		board_code

@@ -129,20 +129,10 @@ public class TravelStoryController {
 		System.out.println(data);
 		return new ResponseEntity<String>(data,resHeaders,HttpStatus.CREATED);
 	}
+
 	
-	@RequestMapping("/expenseInsert")
-	@ResponseBody // 데이터만 보낼때 씀
-	public void expenseInsert(HttpServletRequest request, TravelStory travelstory) throws Exception {
-		service.expenseInsert(travelstory);
-		travelstory.setExpense_Code(service.fineMaxExpenseCode());
-		// System.out.println("그룹코드 : "+travelstory.getGroup_Code());
-		// System.out.println("사용자아이디 : "+travelstory.getUser_id());
-		// System.out.println("지출코드 : "+travelstory.getExpense_Code());
-		service.expenseInsertTravel(travelstory);
 
-	}
-
-	@RequestMapping("/titleSearch")
+	@RequestMapping("titleSearch")
 	@ResponseBody // 데이터만 보낼때 씀
 	public List titleSearch(HttpServletRequest request, String user_id) throws Exception { // String
 																							// user_id를
@@ -167,7 +157,7 @@ public class TravelStoryController {
 		return m_list; // 웹 -> 앱
 	}
 
-	@RequestMapping("/scDivisionSearch")
+	@RequestMapping("scDivisionSearch")
 	@ResponseBody
 	public JSONObject scDivisionSearch(HttpServletRequest request, String group_Code) throws Exception {
 		List<TravelStory> s_list = service.DivisionSearch(group_Code);
@@ -180,7 +170,7 @@ public class TravelStoryController {
 		return jsonObj;
 	}
 
-	@RequestMapping("/selectExpense")
+	@RequestMapping("selectExpense")
 	@ResponseBody // 데이터만 보낼때 씀
 	public List selectExpense(HttpServletRequest request, String group_Code) throws Exception { // String
 																								// user_id를

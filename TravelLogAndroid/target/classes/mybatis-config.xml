@@ -18,5 +18,7 @@
 		<typeAlias alias="Travelgorup" type="zarazio.travel.android.bean.TravelGroup" />
 		<typeAlias alias="material" type="zarazio.travel.android.bean.Material" />
 		<typeAlias alias="selectTravel" type="zarazio.travel.android.bean.selectTravel" />
+		<typeAlias alias="travelpush" type="zarazio.travel.android.bean.TravelMemoPushData" />
+		<typeAlias alias="String" type="java.lang.String" />
 	</typeAliases>
 </configuration>

@@ -18,8 +18,11 @@ import com.google.gson.Gson;
 
 import zarazio.travel.android.bean.Friend;
 import zarazio.travel.android.bean.Member;
+import zarazio.travel.android.bean.TravelStory;
 import zarazio.travel.android.dao.MemberDAO;
 import zarazio.travel.android.service.MemberService;
+import zarazio.travel.android.service.TravelStoryService;
+
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 
@@ -47,7 +50,21 @@ public class MemberController {
 
 	@Inject
 	private JavaMailSender mailSender;
+	@Inject
+	private TravelStoryService mservice;
 
+	@RequestMapping(value="/expensive")
+	public void expenseInsert(HttpServletRequest request, TravelStory travelstory) throws Exception {
+		System.out.println("ddsadas");
+		mservice.expenseInsert(travelstory);
+		travelstory.setExpense_Code(mservice.fineMaxExpenseCode());
+		// System.out.println("그룹코드 : "+travelstory.getGroup_Code());
+		// System.out.println("사용자아이디 : "+travelstory.getUser_id());
+		// System.out.println("지출코드 : "+travelstory.getExpense_Code());
+		mservice.expenseInsertTravel(travelstory);
+
+	}
+	
 	@RequestMapping(value="/register")
 	public void androidTest2(HttpServletRequest request, Member member) throws Exception {
 

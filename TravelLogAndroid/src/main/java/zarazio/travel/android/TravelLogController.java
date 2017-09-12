@@ -128,7 +128,7 @@ public class TravelLogController {
 		resHeaders.add("Content-Type", "application/json;charset=UTF-8");
 		List<boardDTO> List = null;
 		
-		
+		System.out.println("해쉬태그"+arFilter.getHashTag());
 		if(arFilter.getHashTag().equals("없음") && arFilter.getOrder_DB().equals("1")){
 			List = service.boardList();
 		}else if(!(arFilter.getHashTag().equals("없음")) && arFilter.getOrder_DB().equals("1")){

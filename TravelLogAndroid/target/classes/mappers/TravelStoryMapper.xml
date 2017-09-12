@@ -47,7 +47,7 @@
 	</select>
 	<select id="travel_place_list" resultType="travelList">
 		SELECT
-		c.group_Code,a.*, b.place_img, c.travel_Priority, c.travel_Date FROM
+		c.group_Code,a.*, b.place_img, c.travel_Priority, c.travel_Date, c.travel_Memo FROM
 		travel_list c, place_tbl a
 		LEFT OUTER join pimg_tbl b
 		on a.place_code =

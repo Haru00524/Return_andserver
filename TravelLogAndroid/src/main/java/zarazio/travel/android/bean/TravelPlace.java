@@ -10,6 +10,7 @@ public class TravelPlace {
 	String place_img;
 	int travel_Priority;
 	String travel_Date;
+	String travel_Memo;
 	public int getPlace_code() {
 		return place_code;
 	}
@@ -64,5 +65,12 @@ public class TravelPlace {
 	public void setTravel_Date(String travel_Date) {
 		this.travel_Date = travel_Date;
 	}
+	public String getTravel_Memo() {
+		return travel_Memo;
+	}
+	public void setTravel_Memo(String travel_Memo) {
+		this.travel_Memo = travel_Memo;
+	}
+	
 	
 }

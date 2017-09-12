@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import zarazio.travel.android.bean.QnaBean;
 import zarazio.travel.android.bean.StepLogDTO;
+import zarazio.travel.android.bean.TravelMemoPushData;
 import zarazio.travel.android.bean.boardDTO;
 import zarazio.travel.android.bean.boardLIstDTO;
 import zarazio.travel.android.bean.myPlaceDTO;
@@ -77,6 +78,24 @@ public class QNAServiceImpl implements QNAService {
 		}
 		System.out.println("°á°ú°ª"+result);
 		return result;
+	}
+
+	@Override
+	public TravelMemoPushData travelMemo(myPlaceDTO myplace) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.travelMemo(myplace);
+	}
+
+	@Override
+	public String travelIn(String user_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.travelIn(user_id);
+	}
+
+	@Override
+	public void travelInPlace(int travel_Code) throws Exception {
+		// TODO Auto-generated method stub
+		dao.travelInPlace(travel_Code);
 	}
 
 

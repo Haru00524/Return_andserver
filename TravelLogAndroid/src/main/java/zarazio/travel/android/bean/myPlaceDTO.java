@@ -4,6 +4,7 @@ public class myPlaceDTO {
 	private double longitude;
 	private double latitude;
 	private String user_id;
+	private String group_code;
 	public double getLongitude() {
 		return longitude;
 	}
@@ -21,6 +22,12 @@ public class myPlaceDTO {
 	}
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
+	}
+	public String getGroup_code() {
+		return group_code;
+	}
+	public void setGroup_code(String group_code) {
+		this.group_code = group_code;
 	}
 	
 	

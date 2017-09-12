@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import zarazio.travel.android.bean.QnaBean;
 import zarazio.travel.android.bean.StepLogDTO;
+import zarazio.travel.android.bean.TravelMemoPushData;
 import zarazio.travel.android.bean.attachedFileDTO;
 import zarazio.travel.android.bean.boardDTO;
 import zarazio.travel.android.bean.boardLIstDTO;
@@ -57,6 +58,24 @@ public class QNADAOImpl implements QNADAO {
 	public List<QnaBean> selectQNADefault() throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace+".selectQnaDefault");
+	}
+
+	@Override
+	public TravelMemoPushData travelMemo(myPlaceDTO myplace) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+".treavel_memo", myplace);
+	}
+
+	@Override
+	public String travelIn(String user_id) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+".travel_inTitle", user_id);
+	}
+
+	@Override
+	public void travelInPlace(int travel_Code) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace+".travel_inMemo", travel_Code);
 	}
 
 }
